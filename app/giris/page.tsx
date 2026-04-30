@@ -32,17 +32,17 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             ADN Trust Giris
           </p>
           <h1 className="mt-6 text-4xl font-semibold tracking-tight">
-            ADN tenant secimi ile guvenli giris
+            ADN Grup Sigorta icin guvenli operasyon girisi
           </h1>
           <p className="mt-5 max-w-xl text-base leading-8 text-white/75">
-            Her acente kendi verisinde calisir. Secim ekranindan sonra yetki kontrolu
-            yapilir ve sadece izinli tenant acilir.
+            Tek kurum yapisinda tum operasyon tek merkezden yonetilir. Giris sonrasi
+            sadece ADN Grup Sigorta paneli acilir.
           </p>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             <article className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-              <p className="text-sm text-white/70">Aktif tenant</p>
-              <p className="mt-2 text-2xl font-semibold">{agencyOptions.length} acente</p>
+              <p className="text-sm text-white/70">Aktif kurum</p>
+              <p className="mt-2 text-2xl font-semibold">ADN Grup Sigorta</p>
             </article>
             <article className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
               <p className="text-sm text-white/70">Giris modeli</p>
@@ -55,10 +55,10 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 
         <div className="p-8 sm:p-10">
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[var(--color-accent)]">
-            Acenteli giris
+            Kurumsal giris
           </p>
           <h2 className="mt-4 text-3xl font-semibold text-[var(--color-ink)]">
-            Secilen acenteye gore oturum ac
+            ADN kullanici girisi
           </h2>
           <LoginForm
             agencies={agencyOptions}

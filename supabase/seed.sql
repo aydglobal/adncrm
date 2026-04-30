@@ -1,7 +1,13 @@
 insert into public.agencies (id, name, slug, city, phone, email)
 values
-  ('11111111-1111-1111-1111-111111111111', 'Atlas Sigorta', 'atlas-sigorta', 'Istanbul', '0212 111 11 11', 'atlas@acentam.com'),
-  ('22222222-2222-2222-2222-222222222222', 'Ege Guvence', 'ege-guvence', 'Izmir', '0232 222 22 22', 'ege@acentam.com')
+  (
+    '11111111-1111-1111-1111-111111111111',
+    'ADN Grup Sigorta',
+    'adn-grup-sigorta',
+    'Istanbul',
+    '0212 444 23 46',
+    'operasyon@adntrust.net'
+  )
 on conflict (slug) do nothing;
 
 insert into public.customers (
@@ -29,13 +35,13 @@ values
   ),
   (
     'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
-    '22222222-2222-2222-2222-222222222222',
+    '11111111-1111-1111-1111-111111111111',
     'individual',
     'Ayse Yildiz',
     null,
     '05412120853',
     'ayse@ornek.com',
-    'Izmir',
+    'Istanbul',
     'TSS ve konut police ilgisi'
   )
 on conflict (id) do nothing;
@@ -60,7 +66,7 @@ values
     'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
     'Filo Kasko',
     'Anadolu Sigorta',
-    'ATL-2026-001',
+    'ADN-2026-001',
     'renewal_due',
     '2025-04-12',
     '2026-04-12',
@@ -69,11 +75,11 @@ values
   ),
   (
     'dddddddd-dddd-dddd-dddd-dddddddddddd',
-    '22222222-2222-2222-2222-222222222222',
+    '11111111-1111-1111-1111-111111111111',
     'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
     'Tamamlayici Saglik',
     'Allianz',
-    'EGE-2026-014',
+    'ADN-2026-014',
     'active',
     '2025-04-14',
     '2026-04-14',
@@ -113,7 +119,7 @@ values
   ),
   (
     'ffffffff-ffff-ffff-ffff-ffffffffffff',
-    '22222222-2222-2222-2222-222222222222',
+    '11111111-1111-1111-1111-111111111111',
     null,
     'Tuna Apartmani',
     '02325550000',
@@ -150,7 +156,7 @@ values
   ),
   (
     '34343434-3434-3434-3434-343434343434',
-    '22222222-2222-2222-2222-222222222222',
+    '11111111-1111-1111-1111-111111111111',
     'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
     'dddddddd-dddd-dddd-dddd-dddddddddddd',
     'TSS yenileme aramasi',
@@ -174,15 +180,15 @@ values
     '11111111-1111-1111-1111-111111111111',
     'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
     'cccccccc-cccc-cccc-cccc-cccccccccccc',
-    'Atlas filo yenileme',
+    'ADN filo yenileme',
     'Ruhsatlar tamamlandi, son teklif bekleniyor.'
   ),
   (
     '78787878-7878-7878-7878-787878787878',
-    '22222222-2222-2222-2222-222222222222',
+    '11111111-1111-1111-1111-111111111111',
     'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
     'dddddddd-dddd-dddd-dddd-dddddddddddd',
-    'Ege TSS tahsilat',
+    'TSS tahsilat',
     'Kredi karti provizyonu tamamlandi.'
   )
 on conflict (id) do nothing;
@@ -203,19 +209,19 @@ values
     '11111111-1111-1111-1111-111111111111',
     'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
     'cccccccc-cccc-cccc-cccc-cccccccccccc',
-    'Atlas filo teklif.pdf',
+    'ADN filo teklif.pdf',
     'quote_pdf',
-    'https://example.com/files/atlas-filo-teklif.pdf',
+    'https://example.com/files/adn-filo-teklif.pdf',
     248000
   ),
   (
     'abababab-abab-abab-abab-abababababab',
-    '22222222-2222-2222-2222-222222222222',
+    '11111111-1111-1111-1111-111111111111',
     'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb',
     'dddddddd-dddd-dddd-dddd-dddddddddddd',
-    'Ege tss police.pdf',
+    'ADN tss police.pdf',
     'policy_pdf',
-    'https://example.com/files/ege-tss-police.pdf',
+    'https://example.com/files/adn-tss-police.pdf',
     192000
   )
 on conflict (id) do nothing;

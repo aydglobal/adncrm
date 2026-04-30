@@ -12,14 +12,14 @@ export default async function Home() {
           <div className="reveal">
             <BrandMark dark priority href="/" />
             <p className="inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-1 text-xs font-medium uppercase tracking-[0.32em] text-white/80">
-              Sigorta Operasyon Command Center
+              ADN Grup Sigorta Command Center
             </p>
             <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-              ADN Trust icin premium, canliya hazir acente operasyon platformu.
+              ADN Grup Sigorta icin premium, canliya hazir operasyon platformu.
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-8 text-white/75 sm:text-lg">
-              Musteri, police, lead, ekip ve evrak akisi tek ekranda. Her acente kendi
-              verisini gorur; ADN markasi altinda hizli karar icin tum ozetler tek bakista.
+              Musteri, police, lead, ekip ve evrak akisi tek ekranda. ADN Grup Sigorta
+              markasi altinda hizli karar icin tum ozetler tek bakista.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
@@ -28,9 +28,18 @@ export default async function Home() {
               >
                 Giris yap
               </Link>
-              <span className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/80">
+              <Link
+                href={agencies[0] ? `/acente/${agencies[0].slug}` : "/giris"}
+                className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10"
+              >
                 Veri kaynagi: {source === "supabase" ? "Canli" : "Demo"}
-              </span>
+              </Link>
+              <Link
+                href={agencies[0] ? `/acente/${agencies[0].slug}#kayit-merkezi` : "/giris"}
+                className="rounded-full border border-sky-300/30 bg-sky-400/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-400/20"
+              >
+                Kayit merkezine git
+              </Link>
             </div>
           </div>
 
@@ -61,7 +70,7 @@ export default async function Home() {
               </div>
               <div className="rounded-[1.5rem] border border-white/10 bg-gradient-to-r from-sky-500/20 via-slate-900/30 to-emerald-500/20 p-5">
                 <p className="text-sm font-semibold">Acenta sayisi</p>
-                <p className="mt-2 text-3xl font-semibold">2 aktif tenant</p>
+                <p className="mt-2 text-3xl font-semibold">1 aktif kurum</p>
               </div>
             </div>
           </div>
@@ -71,10 +80,10 @@ export default async function Home() {
       <section className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-accent)]">
-            Acentalar
+            Kurum
           </p>
           <h2 className="mt-3 text-3xl font-semibold text-[var(--color-ink)]">
-            ADN aginda aktif 2 acente
+            ADN Grup Sigorta
           </h2>
           <div className="mt-8 grid gap-4">
             {agencies.map((agency) => (
@@ -110,24 +119,37 @@ export default async function Home() {
         <div className="space-y-6">
           <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-accent)]">
-              Mimari
+              Operasyon yapisi
             </p>
             <h2 className="mt-3 text-3xl font-semibold text-[var(--color-ink)]">
-              Coklu acente mantigi
+              Tek merkezli canli kullanim
             </h2>
             <div className="mt-8 grid gap-4">
               {[
-                "Her kayitta agency_id olacak: musteri, police, lead, mesaj, personel, PDF.",
-                "Kullanici girisinde role ek olarak agency_id tutulacak.",
-                "Super admin tum acenteleri gorur, acente yoneticisi sadece kendi tenant'ini gorur.",
-                "Raporlar ve bildirimler tenant bazinda filtrelenecek.",
+                {
+                  text: "Tum musteri, police, lead ve belge akisi ADN Grup Sigorta catisinda yonetilir.",
+                  href: agencies[0] ? `/acente/${agencies[0].slug}#genel-bakis` : "/giris",
+                },
+                {
+                  text: "Tek kullanici girisiyle merkez operasyon paneli acilir.",
+                  href: "/giris",
+                },
+                {
+                  text: "Yetkisiz kullanici farkli tenant ya da farkli kurum ekrani acamaz.",
+                  href: agencies[0] ? `/acente/${agencies[0].slug}#ekip` : "/giris",
+                },
+                {
+                  text: "Canli kullanimda RLS ve oturum kontrolu ayni cizgide korunur.",
+                  href: agencies[0] ? `/acente/${agencies[0].slug}#operasyon` : "/giris",
+                },
               ].map((item) => (
-                <article
-                  key={item}
-                  className="rounded-[1.5rem] border border-[var(--color-line)] bg-[var(--color-soft)] p-5 text-sm leading-7 text-[var(--color-muted)]"
+                <Link
+                  key={item.text}
+                  href={item.href}
+                  className="rounded-[1.5rem] border border-[var(--color-line)] bg-[var(--color-soft)] p-5 text-sm leading-7 text-[var(--color-muted)] transition hover:-translate-y-0.5 hover:border-[var(--color-line-strong)]"
                 >
-                  {item}
-                </article>
+                  {item.text}
+                </Link>
               ))}
             </div>
           </div>
@@ -143,6 +165,20 @@ export default async function Home() {
               <p>1. Ilk etapta 2 acente icin `agencies`, `users`, `customers`, `policies`, `leads` tablolarini tenant bazli kur.</p>
               <p>2. Rol yetkisini `super_admin`, `agency_admin`, `sales`, `operations` olarak ayir.</p>
               <p>3. Her sorguda acente filtresi uygula; yeni acente acmak ise sadece yeni tenant eklemek kadar kolay olsun.</p>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href="/giris"
+                className="rounded-full border border-[var(--color-line)] bg-white px-5 py-3 text-sm font-semibold text-[var(--color-ink)]"
+              >
+                Giris ekranina git
+              </Link>
+              <Link
+                href={agencies[0] ? `/acente/${agencies[0].slug}#police-yonetimi` : "/giris"}
+                className="rounded-full bg-[var(--color-strong)] px-5 py-3 text-sm font-semibold text-white"
+              >
+                Police yonetimini ac
+              </Link>
             </div>
           </div>
         </div>

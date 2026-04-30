@@ -25,13 +25,13 @@ Bu proje simdilik 2 acente ile baslayacak, ama veri modeli yeni acente eklemeye 
 
 1. Supabase projesini acin.
 2. [supabase/migrations/20260408_initial_multi_tenant.sql](/Users/Asus/Desktop/crm/supabase/migrations/20260408_initial_multi_tenant.sql) dosyasini SQL Editor'de calistirin.
-3. Ardindan [supabase/seed.sql](/Users/Asus/Desktop/crm/supabase/seed.sql) dosyasini calistirarak 2 acentelik ornek veriyi yukleyin.
-4. `.env.local` icine `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` ve `SUPABASE_SERVICE_ROLE_KEY` degerlerini yazin.
-5. Auth tarafinda kullanicilar olustukca `profiles` ve `agency_memberships` kayitlarini ekleyin.
+3. Ardindan [20260430_storage_documents_bucket.sql](/Users/Asus/Desktop/crm/supabase/migrations/20260430_storage_documents_bucket.sql) dosyasini calistirip `documents` bucket ve policy'lerini olusturun.
+4. Son olarak [supabase/seed.sql](/Users/Asus/Desktop/crm/supabase/seed.sql) dosyasini calistirarak ADN Grup Sigorta ornek verisini yukleyin.
+5. `.env.local` icine `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY` ve gerekiyorsa `SUPABASE_DOCUMENTS_BUCKET` degerlerini yazin.
+6. Auth tarafinda kullanicilar olustukca `profiles` ve `agency_memberships` kayitlarini ekleyin.
 
 ## Sonraki adimlar
 
 - Supabase Auth ile giris
 - `agency_id` bazli server-side query helper
-- belge dosyalari icin Supabase Storage bucket
 - dashboard KPI'larini SQL view veya RPC ile toplama

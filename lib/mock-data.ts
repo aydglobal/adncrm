@@ -76,12 +76,12 @@ export type Agency = {
 };
 
 export const navItems: NavItem[] = [
-  { href: "", label: "Ana Panel", shortLabel: "Panel" },
-  { href: "", label: "Musteriler", shortLabel: "Musteri" },
-  { href: "", label: "Policeler", shortLabel: "Police" },
-  { href: "", label: "Lead Merkezi", shortLabel: "Lead" },
-  { href: "", label: "Ekip ve Satis", shortLabel: "Ekip" },
-  { href: "", label: "Operasyon", shortLabel: "Ops" },
+  { href: "#genel-bakis", label: "Ana Panel", shortLabel: "Panel" },
+  { href: "#musteri-yonetimi", label: "Musteriler", shortLabel: "Musteri" },
+  { href: "#police-yonetimi", label: "Policeler", shortLabel: "Police" },
+  { href: "#lead-akisi", label: "Lead Merkezi", shortLabel: "Lead" },
+  { href: "#ekip", label: "Ekip ve Satis", shortLabel: "Ekip" },
+  { href: "#operasyon", label: "Operasyon", shortLabel: "Ops" },
 ];
 
 function buildAgency(
@@ -272,23 +272,13 @@ function buildAgency(
 
 export const agencies: Agency[] = [
   buildAgency(
-    "atlas-sigorta",
-    "Atlas Sigorta",
+    "adn-grup-sigorta",
+    "ADN Grup Sigorta",
     "Istanbul",
-    "24 kullanici",
-    "Kasko, trafik, saglik",
+    "adnsigorta kullanicisi",
+    "Kasko, trafik, saglik, DASK",
     "TL4,8 Mn",
-    "Buyuk sehir bireysel + kurumsal",
-    0,
-  ),
-  buildAgency(
-    "ege-guvence",
-    "Ege Guvence",
-    "Izmir",
-    "17 kullanici",
-    "DASK, konut, saglik",
-    "TL3,4 Mn",
-    "Bireysel yenileme yogun",
+    "Tek merkezli ADN operasyon yapisi",
     2,
   ),
 ];

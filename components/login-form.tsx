@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useEffect } from "react";
+import { demoPassword, demoUsername } from "@/lib/demo-auth";
 import { loginWithAgency, type LoginActionState } from "@/app/giris/actions";
 import { LoginSubmit } from "@/components/login-submit";
 
@@ -40,7 +41,7 @@ export function LoginForm({
     <form className="mt-8 space-y-5" action={formAction}>
       <label className="block">
         <span className="mb-2 block text-sm font-medium text-[var(--color-ink)]">
-          Acente
+          Acente secimi
         </span>
         <select
           name="agencySlug"
@@ -57,12 +58,12 @@ export function LoginForm({
 
       <label className="block">
         <span className="mb-2 block text-sm font-medium text-[var(--color-ink)]">
-          E-posta
+          Kullanici adi
         </span>
         <input
-          name="email"
-          type="email"
-          defaultValue="yonetici@acentam.com"
+          name="identifier"
+          type="text"
+          defaultValue={demoUsername}
           className="w-full rounded-2xl border border-[var(--color-line)] bg-[var(--color-soft)] px-4 py-3 text-sm text-[var(--color-ink)] outline-none"
         />
       </label>
@@ -74,7 +75,7 @@ export function LoginForm({
         <input
           name="password"
           type="password"
-          defaultValue="demo1234"
+          defaultValue={demoPassword}
           className="w-full rounded-2xl border border-[var(--color-line)] bg-[var(--color-soft)] px-4 py-3 text-sm text-[var(--color-ink)] outline-none"
         />
       </label>
@@ -83,8 +84,8 @@ export function LoginForm({
 
       <div className="rounded-[1.25rem] border border-[var(--color-line)] bg-white/75 p-4 text-sm text-[var(--color-muted)]">
         {hasSupabase
-          ? "Gercek giris modu aktif. Yetkisiz bir acente secilirse kullanici iceri alinmaz."
-          : "Demo mod aktif. Supabase bilgileri tanimlanana kadar yetki kontrolu yerine demo yonlendirme kullanilir."}
+          ? "Gercek giris modu aktif. ADN Grup Sigorta yetkisi olmayan kullanici iceri alinmaz."
+          : "Tek kurum modu aktif. ADN Grup Sigorta girisi bu ekrandan dogrudan acilir."}
       </div>
 
       {unauthorizedError ? (

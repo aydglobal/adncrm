@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { demoAgencySlug, demoPassword, demoUsername } from "@/lib/demo-auth";
 import { getSupabaseServerClient, hasSupabaseEnv } from "@/lib/supabase/server";
 
 export type LoginActionState = {
@@ -12,7 +13,7 @@ export async function loginWithAgency(
   formData: FormData,
 ): Promise<LoginActionState> {
   const agencySlug = String(formData.get("agencySlug") ?? "");
-  const email = String(formData.get("email") ?? "");
+  const identifier = String(formData.get("identifier") ?? "");
   const password = String(formData.get("password") ?? "");
 
   if (!agencySlug) {
@@ -20,6 +21,14 @@ export async function loginWithAgency(
   }
 
   if (!hasSupabaseEnv()) {
+    if (
+      agencySlug !== demoAgencySlug ||
+      identifier !== demoUsername ||
+      password !== demoPassword
+    ) {
+      return { error: "Kullanici adi veya sifre hatali." };
+    }
+
     redirect(`/acente/${agencySlug}`);
   }
 
@@ -30,7 +39,7 @@ export async function loginWithAgency(
   }
 
   const { data: signInData, error: authError } = await client.auth.signInWithPassword({
-    email,
+    email: identifier.includes("@") ? identifier : `${identifier}@adntrust.net`,
     password,
   });
 

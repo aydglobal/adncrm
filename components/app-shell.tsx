@@ -27,7 +27,7 @@ export function AppShell({
             {agencyName}
           </h1>
           <p className="mt-3 text-sm leading-7 text-[var(--color-muted)]">
-            ADN altyapisinda her acente kendi verisi, ekibi, police portfoyu ve operasyon akisiyla ayrik sekilde calisir.
+            ADN Grup Sigorta operasyonunda police, ekip, lead ve belge akisi tek merkezden yonetilir.
           </p>
         </div>
 
@@ -36,7 +36,7 @@ export function AppShell({
             href="/"
             className="block rounded-2xl border border-[var(--color-line)] bg-[rgba(15,23,42,0.6)] px-4 py-3 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-line-strong)]"
           >
-            Acenta listesine don
+            ADN ana ekrana don
           </Link>
           {navItems.map((item) => (
             <Link
@@ -51,12 +51,12 @@ export function AppShell({
 
         <div className="mt-auto rounded-[1.5rem] bg-[linear-gradient(145deg,rgba(14,165,233,0.28),rgba(15,23,42,0.95))] p-5 text-white">
           <p className="text-xs uppercase tracking-[0.24em] text-white/60">
-            Tenant mantigi
+            Kurum modu
           </p>
-          <p className="mt-2 text-xl font-semibold">Ayrik veri ve rol yapisi</p>
+          <p className="mt-2 text-xl font-semibold">Tek merkezli canli kullanim</p>
           <p className="mt-3 text-sm leading-6 text-white/74">
-            Sonraki adimda her kayda `agency_id` baglayip yetkiyi acente bazinda
-            kilitleyebiliriz.
+            Giris akisi ADN Grup Sigorta paneline acilir ve yetkisiz kullanici farkli
+            kurum ekranina gidemez.
           </p>
         </div>
       </aside>
@@ -84,9 +84,12 @@ export function AppShell({
               >
                 Giris yap
               </Link>
-              <button className="rounded-full bg-[var(--color-strong)] px-5 py-3 text-sm font-semibold text-white">
+              <Link
+                href={`${basePath}#police-yonetimi`}
+                className="rounded-full bg-[var(--color-strong)] px-5 py-3 text-sm font-semibold text-white"
+              >
                 Yeni police kaydi
-              </button>
+              </Link>
             </div>
           </div>
         </header>

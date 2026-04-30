@@ -1,6 +1,21 @@
 import { notFound } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
+import { RecordForms } from "@/components/record-forms";
 import { SectionHeading } from "@/components/section-heading";
+import {
+  createCustomer,
+  createDocument,
+  createPolicy,
+  createTask,
+  deleteCustomer,
+  deleteDocument,
+  deletePolicy,
+  deleteTask,
+  updateCustomer,
+  updateDocument,
+  updatePolicy,
+  updateTask,
+} from "@/app/acente/[slug]/actions";
 import { requireAgencyAccess } from "@/lib/auth";
 import { getAgencyDashboard } from "@/lib/data";
 
@@ -13,7 +28,16 @@ type AgencyPageProps = {
 export default async function AgencyPage({ params }: AgencyPageProps) {
   const { slug } = await params;
   await requireAgencyAccess(slug);
-  const { agency, source } = await getAgencyDashboard(slug);
+  const {
+    agency,
+    source,
+    customerOptions,
+    policyOptions,
+    customerRecords,
+    policyRecords,
+    taskRecords,
+    documentRecords,
+  } = await getAgencyDashboard(slug);
 
   if (!agency) {
     notFound();
@@ -28,7 +52,10 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
       title="Acenta bazli operasyon paneli"
       description={`${agency.city} ofisi icin musteri, police, lead, ekip ve operasyon verileri tenant bazli ayrik gorunur.`}
     >
-      <section className="mb-6 premium-card rounded-[1.75rem] p-4 text-sm text-[var(--color-muted)]">
+      <section
+        id="genel-bakis"
+        className="mb-6 premium-card rounded-[1.75rem] p-4 text-sm text-[var(--color-muted)]"
+      >
         Veri kaynagi: {source === "supabase" ? "Supabase canli veri" : "Demo veri"}
       </section>
 
@@ -51,7 +78,10 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
         ))}
       </section>
 
-      <section className="mt-6 grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
+      <section
+        id="lead-akisi"
+        className="mt-6 grid gap-6 xl:grid-cols-[1.08fr_0.92fr]"
+      >
         <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
           <SectionHeading
             eyebrow="Musteriler"
@@ -161,7 +191,10 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
         </div>
       </section>
 
-      <section className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+      <section
+        id="ekip"
+        className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]"
+      >
         <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
           <SectionHeading
             eyebrow="Ekip"
@@ -242,6 +275,43 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
           </div>
         </div>
       </section>
+
+      <RecordForms
+        customerOptions={customerOptions}
+        policyOptions={policyOptions}
+        customerRecords={customerRecords}
+        policyRecords={policyRecords}
+        taskRecords={taskRecords}
+        documentRecords={documentRecords}
+        createCustomerAction={createCustomer.bind(null, slug)}
+        createPolicyAction={createPolicy.bind(null, slug)}
+        createTaskAction={createTask.bind(null, slug)}
+        createDocumentAction={createDocument.bind(null, slug)}
+        updateCustomerActionFactory={(recordId) =>
+          updateCustomer.bind(null, slug, recordId)
+        }
+        deleteCustomerActionFactory={(recordId) =>
+          deleteCustomer.bind(null, slug, recordId)
+        }
+        updatePolicyActionFactory={(recordId) =>
+          updatePolicy.bind(null, slug, recordId)
+        }
+        deletePolicyActionFactory={(recordId) =>
+          deletePolicy.bind(null, slug, recordId)
+        }
+        updateTaskActionFactory={(recordId) =>
+          updateTask.bind(null, slug, recordId)
+        }
+        deleteTaskActionFactory={(recordId) =>
+          deleteTask.bind(null, slug, recordId)
+        }
+        updateDocumentActionFactory={(recordId) =>
+          updateDocument.bind(null, slug, recordId)
+        }
+        deleteDocumentActionFactory={(recordId) =>
+          deleteDocument.bind(null, slug, recordId)
+        }
+      />
     </AppShell>
   );
 }
