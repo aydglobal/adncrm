@@ -1,4 +1,5 @@
 import { LoginForm } from "@/components/login-form";
+import { BrandMark } from "@/components/brand-mark";
 import { getAgencySummaries } from "@/lib/data";
 import { hasSupabaseEnv } from "@/lib/supabase/server";
 
@@ -24,25 +25,26 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 
   return (
     <main className="mx-auto flex min-h-screen max-w-6xl items-center px-4 py-8 sm:px-6 lg:px-8">
-      <section className="grid w-full overflow-hidden rounded-[2rem] border border-white/70 bg-white/75 shadow-[0_28px_80px_rgba(17,33,48,0.12)] backdrop-blur-xl lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="bg-[linear-gradient(140deg,#0d3d5a,#0c4a6e_52%,#b85c38)] p-8 text-white sm:p-10">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/70">
-            Sigorta CRM PWA
+      <section className="grid w-full overflow-hidden rounded-[2.5rem] border border-white/10 bg-[rgba(15,23,42,0.75)] shadow-[0_40px_120px_rgba(2,6,23,0.65)] backdrop-blur-xl lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="bg-[radial-gradient(circle_at_top,rgba(14,165,233,0.25),transparent_55%),linear-gradient(140deg,#0b1120,#0f172a_55%,#111827)] p-8 text-white sm:p-10">
+          <BrandMark dark priority href="/" />
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/65">
+            ADN Trust Giris
           </p>
-          <h1 className="mt-5 text-4xl font-semibold tracking-tight">
-            Once acente sec, sonra o tenant icinde oturum ac
+          <h1 className="mt-6 text-4xl font-semibold tracking-tight">
+            ADN tenant secimi ile guvenli giris
           </h1>
-          <p className="mt-5 max-w-xl text-base leading-8 text-white/78">
-            Bu akista her kullanici hangi acente paneline girecegini basta secer.
-            Boylece 2 aktif acente ayni uygulamayi kullanirken veri ayrimi net kalir.
+          <p className="mt-5 max-w-xl text-base leading-8 text-white/75">
+            Her acente kendi verisinde calisir. Secim ekranindan sonra yetki kontrolu
+            yapilir ve sadece izinli tenant acilir.
           </p>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
-            <article className="rounded-[1.5rem] border border-white/15 bg-white/10 p-5">
+            <article className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
               <p className="text-sm text-white/70">Aktif tenant</p>
               <p className="mt-2 text-2xl font-semibold">{agencyOptions.length} acente</p>
             </article>
-            <article className="rounded-[1.5rem] border border-white/15 bg-white/10 p-5">
+            <article className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
               <p className="text-sm text-white/70">Giris modeli</p>
               <p className="mt-2 text-2xl font-semibold">
                 {hasSupabaseEnv() ? "Supabase Auth" : "Demo yonlendirme"}

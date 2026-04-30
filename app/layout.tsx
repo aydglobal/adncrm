@@ -1,37 +1,38 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-});
-
 export const metadata: Metadata = {
-  applicationName: "Sigorta CRM PWA",
-  title: "Sigorta CRM PWA",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL ?? "https://adncrm.onrender.com",
+  ),
+  applicationName: "ADN CRM Suite",
+  title: {
+    default: "ADN CRM Suite",
+    template: "%s | ADN CRM Suite",
+  },
   description:
-    "Sigorta acenteleri için müşteri, poliçe, yenileme, personel, lead ve operasyon yönetimini tek ekranda toplayan PWA paneli.",
+    "ADN Trust icin canliya hazir sigorta operasyon, acente yonetimi, police, lead ve ekip kontrol platformu.",
   manifest: "/manifest.webmanifest",
+  keywords: [
+    "ADN Trust",
+    "sigorta crm",
+    "acente yonetimi",
+    "policy tracking",
+    "lead management",
+  ],
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Sigorta CRM",
+    title: "ADN CRM",
   },
   icons: {
-    icon: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: "/adnlogo.png",
+    apple: "/adnlogo.png",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0c4a6e",
+  themeColor: "#0a0f1d",
 };
 
 export default function RootLayout({
@@ -40,8 +41,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr" className={`${manrope.variable} ${ibmPlexMono.variable}`}>
-      <body>{children}</body>
+    <html lang="tr">
+      <body className="font-sans">{children}</body>
     </html>
   );
 }

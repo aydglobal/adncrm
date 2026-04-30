@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ReactNode } from "react";
+import { BrandMark } from "@/components/brand-mark";
 import { navItems } from "@/lib/mock-data";
 
 type AppShellProps = {
@@ -21,22 +22,19 @@ export function AppShell({
     <div className="mx-auto flex min-h-screen max-w-7xl gap-6 px-4 py-4 sm:px-6 lg:px-8">
       <aside className="panel-card sticky top-4 hidden h-[calc(100vh-2rem)] w-72 flex-col rounded-[2rem] p-5 lg:flex">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-accent)]">
-            Multi-Acente CRM
-          </p>
+          <BrandMark compact dark href="/" />
           <h1 className="mt-3 text-2xl font-semibold text-[var(--color-ink)]">
             {agencyName}
           </h1>
           <p className="mt-3 text-sm leading-7 text-[var(--color-muted)]">
-            Her acente kendi verisi, ekibi, police portfoyu ve operasyon akisiyla
-            ayrik sekilde calisir.
+            ADN altyapisinda her acente kendi verisi, ekibi, police portfoyu ve operasyon akisiyla ayrik sekilde calisir.
           </p>
         </div>
 
         <nav className="mt-8 space-y-2" aria-label="Ana menu">
           <Link
             href="/"
-            className="block rounded-2xl border border-transparent bg-[var(--color-soft)] px-4 py-3 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-line)]"
+            className="block rounded-2xl border border-[var(--color-line)] bg-[rgba(15,23,42,0.6)] px-4 py-3 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-line-strong)]"
           >
             Acenta listesine don
           </Link>
@@ -44,14 +42,14 @@ export function AppShell({
             <Link
               key={item.label}
               href={`${basePath}${item.href}`}
-              className="block rounded-2xl border border-transparent bg-white/70 px-4 py-3 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-line)] hover:bg-white"
+              className="block rounded-2xl border border-[var(--color-line)] bg-white/5 px-4 py-3 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-line-strong)] hover:bg-white/10"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="mt-auto rounded-[1.5rem] bg-[var(--color-strong)] p-5 text-white">
+        <div className="mt-auto rounded-[1.5rem] bg-[linear-gradient(145deg,rgba(14,165,233,0.28),rgba(15,23,42,0.95))] p-5 text-white">
           <p className="text-xs uppercase tracking-[0.24em] text-white/60">
             Tenant mantigi
           </p>
@@ -67,6 +65,7 @@ export function AppShell({
         <header className="panel-card rounded-[2rem] p-6 sm:p-8">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-3xl">
+              <BrandMark compact href="/" />
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-accent)]">
                 {agencyName}
               </p>

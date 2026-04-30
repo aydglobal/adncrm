@@ -28,13 +28,13 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
       title="Acenta bazli operasyon paneli"
       description={`${agency.city} ofisi icin musteri, police, lead, ekip ve operasyon verileri tenant bazli ayrik gorunur.`}
     >
-      <section className="mb-6 panel-card rounded-[1.5rem] p-4 text-sm text-[var(--color-muted)]">
+      <section className="mb-6 premium-card rounded-[1.75rem] p-4 text-sm text-[var(--color-muted)]">
         Veri kaynagi: {source === "supabase" ? "Supabase canli veri" : "Demo veri"}
       </section>
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {agency.kpis.map((card) => (
-          <article key={card.title} className="panel-card rounded-[1.5rem] p-5">
+          <article key={card.title} className="premium-card rounded-[1.5rem] p-5">
             <div className="flex items-center justify-between gap-4">
               <p className="text-sm text-[var(--color-muted)]">{card.title}</p>
               <span className="rounded-full bg-[var(--color-chip)] px-3 py-1 text-xs font-semibold text-[var(--color-accent-strong)]">
@@ -52,7 +52,7 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
       </section>
 
       <section className="mt-6 grid gap-6 xl:grid-cols-[1.08fr_0.92fr]">
-        <div className="panel-card rounded-[2rem] p-6 sm:p-8">
+        <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
           <SectionHeading
             eyebrow="Musteriler"
             title="Bu acentenin aktif portfoyu"
@@ -62,7 +62,7 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
             {agency.customers.map((customer) => (
               <article
                 key={customer.name}
-                className="rounded-[1.5rem] border border-[var(--color-line)] bg-white/85 p-5"
+                className="premium-card rounded-[1.5rem] p-5"
               >
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                   <div>
@@ -73,7 +73,7 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
                       {customer.segment}
                     </p>
                   </div>
-                  <span className="rounded-full bg-[var(--color-soft)] px-3 py-1 text-xs font-semibold text-[var(--color-accent-strong)]">
+                  <span className="rounded-full bg-[var(--color-chip)] px-3 py-1 text-xs font-semibold text-[var(--color-accent-strong)]">
                     {customer.owner}
                   </span>
                 </div>
@@ -88,7 +88,7 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
         </div>
 
         <div className="space-y-6">
-          <div className="panel-card rounded-[2rem] p-6 sm:p-8">
+          <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
             <SectionHeading
               eyebrow="Policeler"
               title="Yenileme ve premium listesi"
@@ -98,7 +98,7 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
               {agency.policies.map((policy) => (
                 <article
                   key={`${policy.customer}-${policy.branch}`}
-                  className="rounded-[1.5rem] border border-[var(--color-line)] bg-white/85 p-5"
+                  className="premium-card rounded-[1.5rem] p-5"
                 >
                   <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                     <div>
@@ -124,7 +124,7 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
             </div>
           </div>
 
-          <div className="panel-card rounded-[2rem] p-6 sm:p-8">
+          <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
             <SectionHeading
               eyebrow="Lead Akisi"
               title="Acenteye ozel dijital talep havuzu"
@@ -134,7 +134,7 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
               {agency.leads.map((lead) => (
                 <article
                   key={lead.name}
-                  className="rounded-[1.5rem] border border-[var(--color-line)] bg-white/85 p-5"
+                  className="premium-card rounded-[1.5rem] p-5"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
@@ -162,7 +162,7 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
       </section>
 
       <section className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="panel-card rounded-[2rem] p-6 sm:p-8">
+        <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
           <SectionHeading
             eyebrow="Ekip"
             title="Acenteye bagli kullanicilar"
@@ -172,7 +172,7 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
             {agency.teamMembers.map((member, index) => (
               <article
                 key={member.name}
-                className="flex items-center justify-between gap-4 rounded-[1.5rem] border border-[var(--color-line)] bg-white/85 p-5"
+                className="flex items-center justify-between gap-4 rounded-[1.5rem] premium-card p-5"
               >
                 <div className="flex items-center gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--color-soft)] text-lg font-semibold text-[var(--color-accent-strong)]">
@@ -196,7 +196,7 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
           </div>
         </div>
 
-        <div className="panel-card rounded-[2rem] p-6 sm:p-8">
+        <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
           <SectionHeading
             eyebrow="Mesaj ve Operasyon"
             title="Acenteye ozel ic akis"
@@ -206,7 +206,7 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
             {agency.operationCards.map((card) => (
               <article
                 key={card.title}
-                className="rounded-[1.5rem] border border-[var(--color-line)] bg-[var(--color-soft)] p-5"
+                className="premium-card rounded-[1.5rem] p-5"
               >
                 <h3 className="text-lg font-semibold text-[var(--color-ink)]">
                   {card.title}
@@ -221,7 +221,7 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
             {agency.messages.map((message) => (
               <article
                 key={`${message.from}-${message.time}`}
-                className="rounded-[1.5rem] border border-[var(--color-line)] bg-white/85 p-5"
+                className="premium-card rounded-[1.5rem] p-5"
               >
                 <div className="flex items-center justify-between gap-4">
                   <h3 className="font-semibold text-[var(--color-ink)]">
