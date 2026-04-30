@@ -3,7 +3,21 @@
 import type { ReactNode } from "react";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
-import type { CrudActionState } from "@/app/acente/[slug]/actions";
+import {
+  createCustomer,
+  createDocument,
+  createPolicy,
+  createTask,
+  deleteCustomer,
+  deleteDocument,
+  deletePolicy,
+  deleteTask,
+  type CrudActionState,
+  updateCustomer,
+  updateDocument,
+  updatePolicy,
+  updateTask,
+} from "@/app/acente/[slug]/actions";
 
 type SelectOption = { id: string; label: string };
 type ActionHandler = (
@@ -64,24 +78,13 @@ type DocumentRecord = {
 };
 
 type RecordFormsProps = {
+  slug: string;
   customerOptions: SelectOption[];
   policyOptions: SelectOption[];
   customerRecords: CustomerRecord[];
   policyRecords: PolicyRecord[];
   taskRecords: TaskRecord[];
   documentRecords: DocumentRecord[];
-  createCustomerAction: ActionHandler;
-  createPolicyAction: ActionHandler;
-  createTaskAction: ActionHandler;
-  createDocumentAction: ActionHandler;
-  updateCustomerActionFactory: (recordId: string) => ActionHandler;
-  deleteCustomerActionFactory: (recordId: string) => ActionHandler;
-  updatePolicyActionFactory: (recordId: string) => ActionHandler;
-  deletePolicyActionFactory: (recordId: string) => ActionHandler;
-  updateTaskActionFactory: (recordId: string) => ActionHandler;
-  deleteTaskActionFactory: (recordId: string) => ActionHandler;
-  updateDocumentActionFactory: (recordId: string) => ActionHandler;
-  deleteDocumentActionFactory: (recordId: string) => ActionHandler;
 };
 
 const initialState: CrudActionState = { status: "idle", message: "" };
@@ -494,10 +497,22 @@ function DocumentItem({
 }
 
 export function RecordForms(props: RecordFormsProps) {
-  const [customerState, customerAction] = useActionState(props.createCustomerAction, initialState);
-  const [policyState, policyAction] = useActionState(props.createPolicyAction, initialState);
-  const [taskState, taskAction] = useActionState(props.createTaskAction, initialState);
-  const [documentState, documentAction] = useActionState(props.createDocumentAction, initialState);
+  const [customerState, customerAction] = useActionState(
+    createCustomer.bind(null, props.slug),
+    initialState,
+  );
+  const [policyState, policyAction] = useActionState(
+    createPolicy.bind(null, props.slug),
+    initialState,
+  );
+  const [taskState, taskAction] = useActionState(
+    createTask.bind(null, props.slug),
+    initialState,
+  );
+  const [documentState, documentAction] = useActionState(
+    createDocument.bind(null, props.slug),
+    initialState,
+  );
 
   return (
     <section className="mt-8 space-y-6" id="kayit-merkezi">
@@ -602,7 +617,12 @@ export function RecordForms(props: RecordFormsProps) {
         <div className="space-y-4">
           {props.customerRecords.length === 0 ? <p className="text-sm text-[var(--color-muted)]">Henuz musteri kaydi yok.</p> : null}
           {props.customerRecords.map((record) => (
-            <CustomerItem key={record.id} record={record} updateAction={props.updateCustomerActionFactory(record.id)} deleteAction={props.deleteCustomerActionFactory(record.id)} />
+            <CustomerItem
+              key={record.id}
+              record={record}
+              updateAction={updateCustomer.bind(null, props.slug, record.id)}
+              deleteAction={deleteCustomer.bind(null, props.slug, record.id)}
+            />
           ))}
         </div>
       </Card>
@@ -611,7 +631,13 @@ export function RecordForms(props: RecordFormsProps) {
         <div className="space-y-4">
           {props.policyRecords.length === 0 ? <p className="text-sm text-[var(--color-muted)]">Henuz police kaydi yok.</p> : null}
           {props.policyRecords.map((record) => (
-            <PolicyItem key={record.id} record={record} customerOptions={props.customerOptions} updateAction={props.updatePolicyActionFactory(record.id)} deleteAction={props.deletePolicyActionFactory(record.id)} />
+            <PolicyItem
+              key={record.id}
+              record={record}
+              customerOptions={props.customerOptions}
+              updateAction={updatePolicy.bind(null, props.slug, record.id)}
+              deleteAction={deletePolicy.bind(null, props.slug, record.id)}
+            />
           ))}
         </div>
       </Card>
@@ -620,7 +646,14 @@ export function RecordForms(props: RecordFormsProps) {
         <div className="space-y-4">
           {props.taskRecords.length === 0 ? <p className="text-sm text-[var(--color-muted)]">Henuz gorev kaydi yok.</p> : null}
           {props.taskRecords.map((record) => (
-            <TaskItem key={record.id} record={record} customerOptions={props.customerOptions} policyOptions={props.policyOptions} updateAction={props.updateTaskActionFactory(record.id)} deleteAction={props.deleteTaskActionFactory(record.id)} />
+            <TaskItem
+              key={record.id}
+              record={record}
+              customerOptions={props.customerOptions}
+              policyOptions={props.policyOptions}
+              updateAction={updateTask.bind(null, props.slug, record.id)}
+              deleteAction={deleteTask.bind(null, props.slug, record.id)}
+            />
           ))}
         </div>
       </Card>
@@ -629,7 +662,14 @@ export function RecordForms(props: RecordFormsProps) {
         <div className="space-y-4">
           {props.documentRecords.length === 0 ? <p className="text-sm text-[var(--color-muted)]">Henuz belge kaydi yok.</p> : null}
           {props.documentRecords.map((record) => (
-            <DocumentItem key={record.id} record={record} customerOptions={props.customerOptions} policyOptions={props.policyOptions} updateAction={props.updateDocumentActionFactory(record.id)} deleteAction={props.deleteDocumentActionFactory(record.id)} />
+            <DocumentItem
+              key={record.id}
+              record={record}
+              customerOptions={props.customerOptions}
+              policyOptions={props.policyOptions}
+              updateAction={updateDocument.bind(null, props.slug, record.id)}
+              deleteAction={deleteDocument.bind(null, props.slug, record.id)}
+            />
           ))}
         </div>
       </Card>

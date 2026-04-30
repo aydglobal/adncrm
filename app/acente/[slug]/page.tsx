@@ -2,20 +2,6 @@ import { notFound } from "next/navigation";
 import { AppShell } from "@/components/app-shell";
 import { RecordForms } from "@/components/record-forms";
 import { SectionHeading } from "@/components/section-heading";
-import {
-  createCustomer,
-  createDocument,
-  createPolicy,
-  createTask,
-  deleteCustomer,
-  deleteDocument,
-  deletePolicy,
-  deleteTask,
-  updateCustomer,
-  updateDocument,
-  updatePolicy,
-  updateTask,
-} from "@/app/acente/[slug]/actions";
 import { requireAgencyAccess } from "@/lib/auth";
 import { getAgencyDashboard } from "@/lib/data";
 
@@ -277,40 +263,13 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
       </section>
 
       <RecordForms
+        slug={slug}
         customerOptions={customerOptions}
         policyOptions={policyOptions}
         customerRecords={customerRecords}
         policyRecords={policyRecords}
         taskRecords={taskRecords}
         documentRecords={documentRecords}
-        createCustomerAction={createCustomer.bind(null, slug)}
-        createPolicyAction={createPolicy.bind(null, slug)}
-        createTaskAction={createTask.bind(null, slug)}
-        createDocumentAction={createDocument.bind(null, slug)}
-        updateCustomerActionFactory={(recordId) =>
-          updateCustomer.bind(null, slug, recordId)
-        }
-        deleteCustomerActionFactory={(recordId) =>
-          deleteCustomer.bind(null, slug, recordId)
-        }
-        updatePolicyActionFactory={(recordId) =>
-          updatePolicy.bind(null, slug, recordId)
-        }
-        deletePolicyActionFactory={(recordId) =>
-          deletePolicy.bind(null, slug, recordId)
-        }
-        updateTaskActionFactory={(recordId) =>
-          updateTask.bind(null, slug, recordId)
-        }
-        deleteTaskActionFactory={(recordId) =>
-          deleteTask.bind(null, slug, recordId)
-        }
-        updateDocumentActionFactory={(recordId) =>
-          updateDocument.bind(null, slug, recordId)
-        }
-        deleteDocumentActionFactory={(recordId) =>
-          deleteDocument.bind(null, slug, recordId)
-        }
       />
     </AppShell>
   );
