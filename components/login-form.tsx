@@ -88,6 +88,18 @@ export function LoginForm({
           : "Tek kurum modu aktif. ADN Grup Sigorta girisi bu ekrandan dogrudan acilir."}
       </div>
 
+      {!hasSupabase ? (
+        <div className="rounded-[1.25rem] border border-sky-200/20 bg-sky-500/5 p-4 text-sm text-[var(--color-muted)]">
+          <p className="font-semibold text-[var(--color-ink)]">Demo giris bilgisi</p>
+          <p className="mt-2">
+            Kullanici adi: <span className="font-semibold text-[var(--color-ink)]">{demoUsername}</span>
+          </p>
+          <p>
+            Sifre: <span className="font-semibold text-[var(--color-ink)]">{demoPassword}</span>
+          </p>
+        </div>
+      ) : null}
+
       {unauthorizedError ? (
         <p className="rounded-[1rem] bg-amber-50 px-4 py-3 text-sm text-amber-800">
           {unauthorizedError}

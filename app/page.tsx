@@ -6,44 +6,44 @@ export default async function Home() {
   const { agencies, source } = await getAgencySummaries();
 
   return (
-    <main className="mx-auto min-h-screen max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <section className="hero-panel glow-card overflow-hidden rounded-[2.75rem] p-6 text-white sm:p-8 lg:p-10">
-        <div className="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+    <main className="mx-auto min-h-screen max-w-7xl px-3 py-3 sm:px-6 sm:py-6 lg:px-8">
+      <section className="hero-panel glow-card overflow-hidden rounded-[1.9rem] p-4 text-white sm:rounded-[2.75rem] sm:p-8 lg:p-10">
+        <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-12">
           <div className="reveal">
             <BrandMark dark priority href="/" />
-            <p className="inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-1 text-xs font-medium uppercase tracking-[0.32em] text-white/80">
+            <p className="inline-flex rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.24em] text-white/80 sm:px-4 sm:text-xs sm:tracking-[0.32em]">
               ADN Grup Sigorta Command Center
             </p>
-            <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+            <h1 className="mt-5 text-3xl font-semibold tracking-tight sm:mt-6 sm:text-5xl lg:text-6xl">
               ADN Grup Sigorta icin premium, canliya hazir operasyon platformu.
             </h1>
-            <p className="mt-6 max-w-2xl text-base leading-8 text-white/75 sm:text-lg">
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/75 sm:mt-6 sm:text-lg sm:leading-8">
               Musteri, police, lead, ekip ve evrak akisi tek ekranda. ADN Grup Sigorta
               markasi altinda hizli karar icin tum ozetler tek bakista.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <Link
                 href="/giris"
-                className="accent-ring rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900"
+                className="accent-ring rounded-full bg-white px-6 py-3 text-center text-sm font-semibold text-slate-900"
               >
                 Giris yap
               </Link>
               <Link
                 href={agencies[0] ? `/acente/${agencies[0].slug}` : "/giris"}
-                className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10"
+                className="rounded-full border border-white/20 px-6 py-3 text-center text-sm font-semibold text-white/80 transition hover:bg-white/10"
               >
                 Veri kaynagi: {source === "supabase" ? "Canli" : "Demo"}
               </Link>
               <Link
                 href={agencies[0] ? `/acente/${agencies[0].slug}#kayit-merkezi` : "/giris"}
-                className="rounded-full border border-sky-300/30 bg-sky-400/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-400/20"
+                className="rounded-full border border-sky-300/30 bg-sky-400/10 px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-sky-400/20"
               >
                 Kayit merkezine git
               </Link>
             </div>
           </div>
 
-          <div className="reveal rounded-[2.25rem] border border-white/10 bg-white/5 p-5">
+          <div className="reveal rounded-[1.6rem] border border-white/10 bg-white/5 p-4 sm:rounded-[2.25rem] sm:p-5">
             <div className="grid gap-4">
               <div className="grid-sheen rounded-[1.5rem] border border-white/10 p-5">
                 <p className="text-xs uppercase tracking-[0.26em] text-white/60">
@@ -69,20 +69,20 @@ export default async function Home() {
                 </div>
               </div>
               <div className="rounded-[1.5rem] border border-white/10 bg-gradient-to-r from-sky-500/20 via-slate-900/30 to-emerald-500/20 p-5">
-                <p className="text-sm font-semibold">Acenta sayisi</p>
-                <p className="mt-2 text-3xl font-semibold">1 aktif kurum</p>
+                <p className="text-sm font-semibold">Operasyon yapisi</p>
+                <p className="mt-2 text-3xl font-semibold">1 aktif kurum paneli</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
+      <section className="mt-6 grid gap-4 sm:mt-10 sm:gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="panel-card rounded-[1.6rem] p-4 sm:rounded-[2.25rem] sm:p-8">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-accent)]">
             Kurum
           </p>
-          <h2 className="mt-3 text-3xl font-semibold text-[var(--color-ink)]">
+          <h2 className="mt-3 text-2xl font-semibold text-[var(--color-ink)] sm:text-3xl">
             ADN Grup Sigorta
           </h2>
           <div className="mt-8 grid gap-4">
@@ -116,12 +116,12 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="space-y-6">
-          <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
+        <div className="space-y-4 sm:space-y-6">
+          <div className="panel-card rounded-[1.6rem] p-4 sm:rounded-[2.25rem] sm:p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-accent)]">
               Operasyon yapisi
             </p>
-            <h2 className="mt-3 text-3xl font-semibold text-[var(--color-ink)]">
+            <h2 className="mt-3 text-2xl font-semibold text-[var(--color-ink)] sm:text-3xl">
               Tek merkezli canli kullanim
             </h2>
             <div className="mt-8 grid gap-4">
@@ -154,17 +154,17 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
+          <div className="panel-card rounded-[1.6rem] p-4 sm:rounded-[2.25rem] sm:p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-accent)]">
               Sonraki adim
             </p>
-            <h2 className="mt-3 text-3xl font-semibold text-[var(--color-ink)]">
-              Uretime gecis yolu
+            <h2 className="mt-3 text-2xl font-semibold text-[var(--color-ink)] sm:text-3xl">
+              Canli kullanim plani
             </h2>
             <div className="mt-6 space-y-3 text-sm leading-7 text-[var(--color-muted)]">
-              <p>1. Ilk etapta 2 acente icin `agencies`, `users`, `customers`, `policies`, `leads` tablolarini tenant bazli kur.</p>
-              <p>2. Rol yetkisini `super_admin`, `agency_admin`, `sales`, `operations` olarak ayir.</p>
-              <p>3. Her sorguda acente filtresi uygula; yeni acente acmak ise sadece yeni tenant eklemek kadar kolay olsun.</p>
+              <p>1. ADN Grup Sigorta ekibi icin kullanici, musteri, police, lead ve belge tablolarini canli veriyle senkronize et.</p>
+              <p>2. Rol dagilimini yonetici, satis, yenileme ve operasyon olacak sekilde netlestir.</p>
+              <p>3. Evrak yukleme, yenileme gorevleri ve satis takip akisini tek panelden yonetilecek hale getir.</p>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link

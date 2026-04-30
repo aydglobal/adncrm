@@ -19,7 +19,7 @@ export function AppShell({
   children,
 }: AppShellProps) {
   return (
-    <div className="mx-auto flex min-h-screen max-w-7xl gap-6 px-4 py-4 sm:px-6 lg:px-8">
+    <div className="mx-auto flex min-h-screen max-w-7xl gap-4 px-3 py-3 sm:gap-6 sm:px-6 sm:py-4 lg:px-8">
       <aside className="panel-card sticky top-4 hidden h-[calc(100vh-2rem)] w-72 flex-col rounded-[2rem] p-5 lg:flex">
         <div>
           <BrandMark compact dark href="/" />
@@ -27,7 +27,7 @@ export function AppShell({
             {agencyName}
           </h1>
           <p className="mt-3 text-sm leading-7 text-[var(--color-muted)]">
-            ADN Grup Sigorta operasyonunda police, ekip, lead ve belge akisi tek merkezden yonetilir.
+            Musteri, police, lead, ekip ve belge surecleri tek merkezli operasyon mantigiyla yonetilir.
           </p>
         </div>
 
@@ -51,42 +51,42 @@ export function AppShell({
 
         <div className="mt-auto rounded-[1.5rem] bg-[linear-gradient(145deg,rgba(14,165,233,0.28),rgba(15,23,42,0.95))] p-5 text-white">
           <p className="text-xs uppercase tracking-[0.24em] text-white/60">
-            Kurum modu
+            Operasyon modu
           </p>
-          <p className="mt-2 text-xl font-semibold">Tek merkezli canli kullanim</p>
+          <p className="mt-2 text-xl font-semibold">Tek kurumlu yonetim yapisi</p>
           <p className="mt-3 text-sm leading-6 text-white/74">
-            Giris akisi ADN Grup Sigorta paneline acilir ve yetkisiz kullanici farkli
-            kurum ekranina gidemez.
+            Yetkili kullanici kendi paneline girer; ekip, satis ve operasyon akisi tek
+            ekranda toplanir.
           </p>
         </div>
       </aside>
 
-      <div className="flex-1 pb-24 lg:pb-6">
-        <header className="panel-card rounded-[2rem] p-6 sm:p-8">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+      <div className="min-w-0 flex-1 pb-28 sm:pb-32 lg:pb-6">
+        <header className="panel-card rounded-[1.6rem] p-4 sm:rounded-[2rem] sm:p-8">
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-3xl">
               <BrandMark compact href="/" />
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-accent)]">
                 {agencyName}
               </p>
-              <h1 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-4xl">
+              <h1 className="mt-3 text-2xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-4xl">
                 {title}
               </h1>
-              <p className="mt-3 text-sm leading-7 text-[var(--color-muted)] sm:text-base">
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-[var(--color-muted)] sm:text-base sm:leading-7">
                 {description}
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
               <Link
                 href="/giris"
-                className="rounded-full border border-[var(--color-line)] bg-white px-5 py-3 text-sm font-semibold text-[var(--color-ink)]"
+                className="rounded-full border border-[var(--color-line)] bg-white px-5 py-3 text-center text-sm font-semibold text-[var(--color-ink)]"
               >
                 Giris yap
               </Link>
               <Link
                 href={`${basePath}#police-yonetimi`}
-                className="rounded-full bg-[var(--color-strong)] px-5 py-3 text-sm font-semibold text-white"
+                className="rounded-full bg-[var(--color-strong)] px-5 py-3 text-center text-sm font-semibold text-white"
               >
                 Yeni police kaydi
               </Link>
@@ -98,13 +98,13 @@ export function AppShell({
 
         <nav
           aria-label="Mobil menu"
-          className="panel-card fixed bottom-4 left-4 right-4 z-20 mx-auto grid max-w-3xl grid-cols-3 gap-2 rounded-[1.5rem] p-3 lg:hidden"
+          className="panel-card fixed bottom-3 left-3 right-3 z-20 mx-auto grid max-w-3xl grid-cols-3 gap-2 rounded-[1.35rem] p-2.5 lg:hidden"
         >
           {navItems.map((item) => (
             <Link
               key={item.label}
               href={`${basePath}${item.href}`}
-              className="rounded-xl bg-white/80 px-3 py-2 text-center text-xs font-semibold text-[var(--color-ink)]"
+              className="rounded-xl bg-white/80 px-2 py-2.5 text-center text-[11px] font-semibold leading-tight text-[var(--color-ink)]"
             >
               {item.shortLabel}
             </Link>

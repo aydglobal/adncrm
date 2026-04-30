@@ -35,13 +35,14 @@ export async function loginWithAgency(
   const client = await getSupabaseServerClient();
 
   if (!client) {
-    return { error: "Supabase baglantisi kurulamadı." };
+    return { error: "Supabase baglantisi kurulamadi." };
   }
 
-  const { data: signInData, error: authError } = await client.auth.signInWithPassword({
-    email: identifier.includes("@") ? identifier : `${identifier}@adntrust.net`,
-    password,
-  });
+  const { data: signInData, error: authError } =
+    await client.auth.signInWithPassword({
+      email: identifier.includes("@") ? identifier : `${identifier}@adntrust.net`,
+      password,
+    });
 
   if (authError || !signInData.user) {
     return { error: authError?.message ?? "Giris basarisiz oldu." };

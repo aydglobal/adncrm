@@ -30,13 +30,21 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
   }
 
   const basePath = `/acente/${agency.slug}`;
+  const renewalDueCount = policyRecords.filter(
+    (policy) => policy.status === "renewal_due",
+  ).length;
+  const openTaskCount = taskRecords.filter((task) =>
+    ["todo", "in_progress", "waiting"].includes(task.status),
+  ).length;
+  const recentDocumentCount = documentRecords.length;
+  const hotLeadCount = agency.leads.filter((lead) => Number(lead.score) >= 80).length;
 
   return (
     <AppShell
       agencyName={agency.name}
       basePath={basePath}
-      title="Acenta bazli operasyon paneli"
-      description={`${agency.city} ofisi icin musteri, police, lead, ekip ve operasyon verileri tenant bazli ayrik gorunur.`}
+      title="ADN Grup Sigorta operasyon merkezi"
+      description={`${agency.city} ofisi icin musteri, police, lead, ekip ve belge surecleri tek merkezden yonetilir.`}
     >
       <section
         id="genel-bakis"
@@ -46,6 +54,41 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
       </section>
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {[
+          {
+            title: "Yenileme alarmi",
+            value: `${renewalDueCount} police`,
+            detail: "Bugun yakin takip isteyen yenileme dosyalari",
+          },
+          {
+            title: "Acil gorev",
+            value: `${openTaskCount} is`,
+            detail: "Satis ve operasyon ekiplerinin bekleyen gorevleri",
+          },
+          {
+            title: "Sicak lead",
+            value: `${hotLeadCount} kayit`,
+            detail: "Skoru 80 uzeri gelen dijital basvurular",
+          },
+          {
+            title: "Belge hareketi",
+            value: `${recentDocumentCount} dosya`,
+            detail: "Arsive bagli son teklifler ve police kopyalari",
+          },
+        ].map((item) => (
+          <article key={item.title} className="panel-card rounded-[1.5rem] p-5">
+            <p className="text-sm text-[var(--color-muted)]">{item.title}</p>
+            <p className="mt-4 text-2xl font-semibold text-[var(--color-ink)]">
+              {item.value}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">
+              {item.detail}
+            </p>
+          </article>
+        ))}
+      </section>
+
+      <section className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {agency.kpis.map((card) => (
           <article key={card.title} className="premium-card rounded-[1.5rem] p-5">
             <div className="flex items-center justify-between gap-4">
@@ -71,8 +114,8 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
         <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
           <SectionHeading
             eyebrow="Musteriler"
-            title="Bu acentenin aktif portfoyu"
-            description="Tum musteri ve firma kartlari sadece secili acente kapsaminda listelenir."
+            title="Aktif musteri portfoyu"
+            description="Kurumsal ve bireysel kartlar yenileme ve satis akisiyla birlikte izlenir."
           />
           <div className="mt-8 space-y-4">
             {agency.customers.map((customer) => (
@@ -105,11 +148,11 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
 
         <div className="space-y-6">
           <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
-            <SectionHeading
-              eyebrow="Policeler"
-              title="Yenileme ve premium listesi"
-              description="Police kayitlari secili tenant icinde filtrelenmis halde gosterilir."
-            />
+          <SectionHeading
+            eyebrow="Policeler"
+            title="Yenileme ve premium takibi"
+            description="Kesilen, teklifte kalan ve yenilemeye gelen policeler ayni akista gorunur."
+          />
             <div className="mt-8 space-y-4">
               {agency.policies.map((policy) => (
                 <article
@@ -141,11 +184,11 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
           </div>
 
           <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
-            <SectionHeading
-              eyebrow="Lead Akisi"
-              title="Acenteye ozel dijital talep havuzu"
-              description="Meta Ads ve formlar sadece ilgili acente satis ekibine duser."
-            />
+          <SectionHeading
+            eyebrow="Lead Akisi"
+            title="Dijital talep havuzu"
+            description="Meta Ads, landing page ve manuel talepler kalite skoruyla takip edilir."
+          />
             <div className="mt-8 space-y-4">
               {agency.leads.map((lead) => (
                 <article
@@ -184,8 +227,8 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
         <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
           <SectionHeading
             eyebrow="Ekip"
-            title="Acenteye bagli kullanicilar"
-            description="Rol ve performans bilgileri tenant bazinda izlenir."
+            title="Ekip ve performans"
+            description="Satis, yenileme ve operasyon ekiplerinin canli dagilimi gorunur."
           />
           <div className="mt-8 space-y-4">
             {agency.teamMembers.map((member, index) => (
@@ -218,8 +261,8 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
         <div className="panel-card rounded-[2.25rem] p-6 sm:p-8">
           <SectionHeading
             eyebrow="Mesaj ve Operasyon"
-            title="Acenteye ozel ic akis"
-            description="Mesajlar, gorevler ve belge surecleri baska acentelerden ayrik tutulur."
+            title="Ic iletisim ve operasyon akisi"
+            description="Mesajlasma, gorevler ve belge surecleri ayni panelde toplanir."
           />
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {agency.operationCards.map((card) => (
@@ -264,6 +307,7 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
 
       <RecordForms
         slug={slug}
+        source={source}
         customerOptions={customerOptions}
         policyOptions={policyOptions}
         customerRecords={customerRecords}
