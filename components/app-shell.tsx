@@ -23,25 +23,25 @@ export function AppShell({
 }: AppShellProps) {
   return (
     <div className="mx-auto flex min-h-screen max-w-7xl gap-4 px-3 py-3 sm:gap-6 sm:px-6 sm:py-4 lg:px-8">
-      <aside className="panel-card sticky top-4 hidden h-[calc(100vh-2rem)] w-72 flex-col rounded-[2rem] p-5 lg:flex">
+      <aside className="panel-card sticky top-4 hidden h-[calc(100vh-2rem)] w-[298px] shrink-0 overflow-y-auto rounded-[2rem] p-5 lg:block">
         <div>
-          <BrandMark compact dark href="/" />
-          <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-[rgba(209,165,92,0.22)] bg-[rgba(209,165,92,0.08)] px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-[var(--color-accent-strong)]">
+          <BrandMark compact href="/" />
+          <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-[rgba(20,122,103,0.18)] bg-[rgba(20,122,103,0.07)] px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-[var(--color-accent-strong)]">
             <span className="status-dot" />
-            ADN kurumsal panel
+            ADN operasyon paneli
           </div>
-          <h1 className="display-title mt-4 text-[2rem] font-semibold text-[var(--color-ink)]">
+          <h1 className="mt-4 text-[2rem] font-semibold tracking-tight text-[var(--color-ink)]">
             {agencyName}
           </h1>
           <p className="mt-3 text-sm leading-7 text-[var(--color-muted)]">
-            Musteri, police, lead, ekip ve belge surecleri tek merkezli operasyon mantigiyla yonetilir.
+            Tum ana is akislari tek panelde, sade ve hizli kullanim mantigiyla yonetilir.
           </p>
         </div>
 
         <nav className="mt-8 space-y-2" aria-label="Ana menu">
           <Link
             href="/giris"
-            className="nav-rail-link bg-[rgba(255,255,255,0.06)]"
+            className="nav-rail-link"
           >
             Giris ekranina don
           </Link>
@@ -49,18 +49,18 @@ export function AppShell({
             <Link
               key={item.label}
               href={`${basePath}${item.href}`}
-              className={`nav-rail-link ${activeTab && item.href.includes(`tab=${activeTab}`) ? "bg-[rgba(209,165,92,0.12)] border-[var(--color-line-strong)]" : ""}`}
+              className={`nav-rail-link ${activeTab && item.href.includes(`tab=${activeTab}`) ? "bg-[rgba(20,122,103,0.08)] border-[var(--color-line-strong)] text-[var(--color-accent-strong)]" : ""}`}
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="mt-auto gold-sheen rounded-[1.6rem] p-5 text-white">
-          <p className="text-xs uppercase tracking-[0.24em] text-white/55">Bugunun odagi</p>
-          <p className="mt-2 text-xl font-semibold">Hizli operasyon gecisi</p>
-          <div className="mt-4 space-y-3 text-sm text-white/78">
-            <p>Musteri kartlari, police yenilemeleri ve operasyon kayitlari tek akista.</p>
+        <div className="mt-5 gold-sheen rounded-[1.6rem] p-5 text-[var(--color-ink)]">
+          <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted)]">Hizli erisim</p>
+          <p className="mt-2 text-lg font-semibold">Bugun en cok kullanilan alanlar</p>
+          <div className="mt-4 space-y-3 text-sm text-[var(--color-muted)]">
+            <p>Musteri, police ve operasyon ekranlari tek tikla acilir.</p>
             <div className="flex flex-col gap-2">
               <Link href={`${basePath}?tab=customers`} className="secondary-button text-sm">
                 Musteri kayitlarini yonet
@@ -74,14 +74,14 @@ export function AppShell({
       </aside>
 
       <div className="min-w-0 flex-1 pb-28 sm:pb-32 lg:pb-6">
-        <header className="hero-stage panel-card rounded-[1.8rem] p-4 sm:rounded-[2.2rem] sm:p-8">
+        <header className="panel-card rounded-[1.8rem] p-4 sm:rounded-[2.2rem] sm:p-8">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-3xl">
               <BrandMark compact href="/" />
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[color:var(--color-gold)]">
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[var(--color-accent)]">
                 {agencyName}
               </p>
-              <h1 className="display-title mt-3 text-[2.2rem] font-semibold tracking-tight text-[var(--color-ink)] sm:text-[3.2rem]">
+              <h1 className="mt-3 text-[2.1rem] font-semibold tracking-tight text-[var(--color-ink)] sm:text-[3rem]">
                 {title}
               </h1>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-[var(--color-muted)] sm:text-base sm:leading-7">
@@ -119,7 +119,7 @@ export function AppShell({
             <Link
               key={item.label}
               href={`${basePath}${item.href}`}
-              className={`rounded-xl px-2 py-2.5 text-center text-[11px] font-semibold leading-tight ${activeTab && item.href.includes(`tab=${activeTab}`) ? "bg-[var(--color-strong)] text-white" : "bg-white/90 text-[var(--color-ink)]"}`}
+              className={`rounded-xl px-2 py-2.5 text-center text-[11px] font-semibold leading-tight ${activeTab && item.href.includes(`tab=${activeTab}`) ? "bg-[var(--color-strong)] text-white" : "bg-white text-[var(--color-ink)]"}`}
             >
               {item.shortLabel}
             </Link>

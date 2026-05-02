@@ -1,27 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --color-page: #0d1217;
-  --color-surface: rgba(17, 24, 30, 0.9);
-  --color-soft: rgba(31, 40, 49, 0.8);
-  --color-ink: #f4efe7;
-  --color-muted: #adb2b7;
-  --color-line: rgba(214, 199, 170, 0.14);
-  --color-line-strong: rgba(209, 165, 92, 0.4);
-  --color-accent: #d1a55c;
-  --color-accent-strong: #f3dfb9;
-  --color-strong: #af7b34;
-  --color-chip: rgba(209, 165, 92, 0.12);
-  --color-gold: #d1a55c;
-  --color-gold-soft: rgba(209, 165, 92, 0.12);
-  --color-emerald: #1e8e74;
-  --color-emerald-soft: rgba(30, 142, 116, 0.16);
+  --color-page: #f4f7fb;
+  --color-surface: rgba(255, 255, 255, 0.94);
+  --color-soft: #eef3f8;
+  --color-ink: #17212b;
+  --color-muted: #64748b;
+  --color-line: rgba(23, 33, 43, 0.08);
+  --color-line-strong: rgba(20, 122, 103, 0.28);
+  --color-accent: #147a67;
+  --color-accent-strong: #0f5c4f;
+  --color-strong: #147a67;
+  --color-chip: rgba(20, 122, 103, 0.1);
+  --color-gold: #147a67;
+  --color-gold-soft: rgba(20, 122, 103, 0.08);
+  --color-emerald: #147a67;
+  --color-emerald-soft: rgba(20, 122, 103, 0.12);
 }
 
 @theme inline {
   --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Cascadia Mono", "Consolas", "Liberation Mono", monospace;
-  --font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
 
 * {
@@ -36,10 +35,9 @@ html {
 body {
   min-height: 100vh;
   background:
-    radial-gradient(circle at 10% 8%, rgba(209, 165, 92, 0.12), transparent 28%),
-    radial-gradient(circle at 88% 10%, rgba(30, 142, 116, 0.14), transparent 30%),
-    radial-gradient(circle at 18% 88%, rgba(84, 97, 114, 0.12), transparent 26%),
-    linear-gradient(180deg, #0d1217 0%, #141a21 46%, #181f27 100%);
+    radial-gradient(circle at 0% 0%, rgba(20, 122, 103, 0.08), transparent 24%),
+    radial-gradient(circle at 100% 0%, rgba(42, 138, 255, 0.06), transparent 22%),
+    linear-gradient(180deg, #f7fafc 0%, #f1f5f9 100%);
   color: var(--color-ink);
   font-family: var(--font-sans);
   overflow-x: hidden;
@@ -104,8 +102,8 @@ select:focus-visible {
   background: var(--color-surface);
   border: 1px solid var(--color-line);
   box-shadow:
-    0 28px 88px rgba(2, 6, 23, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    0 18px 48px rgba(15, 23, 42, 0.06),
+    0 2px 8px rgba(15, 23, 42, 0.04);
   backdrop-filter: blur(20px);
 }
 
@@ -124,22 +122,21 @@ select:focus-visible {
 
 .glow-card {
   background:
-    radial-gradient(circle at top right, rgba(209, 165, 92, 0.12), transparent 26%),
-    radial-gradient(circle at bottom left, rgba(30, 142, 116, 0.09), transparent 28%),
-    linear-gradient(135deg, rgba(15, 20, 26, 0.97), rgba(24, 30, 37, 0.88));
-  border: 1px solid rgba(191, 186, 176, 0.12);
+    radial-gradient(circle at top right, rgba(20, 122, 103, 0.12), transparent 24%),
+    radial-gradient(circle at bottom left, rgba(42, 138, 255, 0.08), transparent 24%),
+    linear-gradient(135deg, rgba(247, 251, 252, 1), rgba(236, 243, 248, 0.98));
+  border: 1px solid rgba(20, 122, 103, 0.08);
   box-shadow:
-    0 40px 110px rgba(2, 6, 23, 0.68),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 22px 54px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .premium-card {
   background:
-    linear-gradient(180deg, rgba(24, 30, 37, 0.96), rgba(19, 25, 32, 0.78));
-  border: 1px solid rgba(191, 186, 176, 0.13);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(249, 251, 253, 0.96));
+  border: 1px solid rgba(23, 33, 43, 0.08);
   box-shadow:
-    0 28px 80px rgba(3, 7, 18, 0.52),
-    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    0 12px 30px rgba(15, 23, 42, 0.05);
 }
 
 .accent-ring {
@@ -156,9 +153,9 @@ select:focus-visible {
 
 .gold-sheen {
   background:
-    linear-gradient(135deg, rgba(209, 165, 92, 0.2), rgba(30, 142, 116, 0.04)),
-    rgba(25, 30, 38, 0.72);
-  border: 1px solid rgba(209, 165, 92, 0.24);
+    linear-gradient(135deg, rgba(20, 122, 103, 0.12), rgba(42, 138, 255, 0.04)),
+    rgba(244, 249, 248, 0.95);
+  border: 1px solid rgba(20, 122, 103, 0.12);
 }
 
 .executive-chip {
@@ -166,9 +163,9 @@ select:focus-visible {
   align-items: center;
   gap: 0.5rem;
   border-radius: 999px;
-  border: 1px solid rgba(216, 179, 106, 0.26);
-  background: rgba(216, 179, 106, 0.1);
-  color: #f4deaf;
+  border: 1px solid rgba(20, 122, 103, 0.18);
+  background: rgba(20, 122, 103, 0.08);
+  color: var(--color-accent-strong);
 }
 
 .form-field {
@@ -200,10 +197,10 @@ select:focus-visible {
 }
 
 .cta-button {
-  background: linear-gradient(135deg, #c39a58, #ad7c3c);
+  background: linear-gradient(135deg, #147a67, #0f5c4f);
   color: #fff;
   box-shadow:
-    0 16px 38px rgba(183, 138, 71, 0.22),
+    0 14px 30px rgba(20, 122, 103, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
@@ -219,8 +216,8 @@ select:focus-visible {
 
 .secondary-button {
   border: 1px solid var(--color-line);
-  background: rgba(255, 255, 255, 0.96);
-  color: #151b23;
+  background: #ffffff;
+  color: var(--color-ink);
 }
 
 .secondary-button:hover {
@@ -229,8 +226,7 @@ select:focus-visible {
 }
 
 .display-title {
-  font-family: var(--font-serif);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
 }
 
 .hero-stage {
@@ -243,8 +239,8 @@ select:focus-visible {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 15% 18%, rgba(209, 165, 92, 0.18), transparent 24%),
-    radial-gradient(circle at 82% 16%, rgba(30, 142, 116, 0.15), transparent 26%);
+    radial-gradient(circle at 15% 18%, rgba(20, 122, 103, 0.08), transparent 22%),
+    radial-gradient(circle at 82% 16%, rgba(42, 138, 255, 0.06), transparent 24%);
   pointer-events: none;
 }
 
@@ -258,11 +254,10 @@ select:focus-visible {
 }
 
 .metric-tile {
-  border: 1px solid rgba(214, 199, 170, 0.12);
+  border: 1px solid rgba(23, 33, 43, 0.08);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
-    rgba(18, 24, 30, 0.72);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(248, 251, 253, 0.96));
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
 }
 
 .status-dot {
@@ -271,14 +266,14 @@ select:focus-visible {
   width: 0.55rem;
   border-radius: 999px;
   background: var(--color-emerald);
-  box-shadow: 0 0 0 6px rgba(30, 142, 116, 0.12);
+  box-shadow: 0 0 0 6px rgba(20, 122, 103, 0.12);
 }
 
 .nav-rail-link {
   display: block;
   border-radius: 1rem;
   border: 1px solid var(--color-line);
-  background: rgba(255, 255, 255, 0.03);
+  background: #ffffff;
   padding: 0.9rem 1rem;
   font-size: 0.92rem;
   font-weight: 600;
@@ -286,7 +281,7 @@ select:focus-visible {
 
 .nav-rail-link:hover {
   border-color: var(--color-line-strong);
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(20, 122, 103, 0.05);
   transform: translateX(2px);
 }
 
@@ -330,6 +325,6 @@ select:focus-visible {
   .panel-card,
   .premium-card,
   .glow-card {
-    box-shadow: 0 18px 44px rgba(2, 6, 23, 0.4);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
   }
 }

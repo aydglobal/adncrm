@@ -27,18 +27,18 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   return (
     <main className="mx-auto flex min-h-screen max-w-7xl items-center px-3 py-4 sm:px-6 sm:py-8 lg:px-8">
       <section className="w-full space-y-4">
-        <div className="hero-stage panel-card overflow-hidden rounded-[2rem] sm:rounded-[2.6rem]">
+        <div className="panel-card overflow-hidden rounded-[2rem] sm:rounded-[2.6rem]">
           <div className="relative grid gap-0 lg:grid-cols-[1.06fr_0.94fr]">
-            <div className="border-b border-white/10 px-5 py-6 text-white sm:px-8 sm:py-8 lg:border-b-0 lg:border-r lg:px-10 lg:py-10">
-              <BrandMark dark priority href="/" />
+            <div className="border-b border-[var(--color-line)] px-5 py-6 sm:px-8 sm:py-8 lg:border-b-0 lg:border-r lg:px-10 lg:py-10">
+              <BrandMark priority href="/" />
               <div className="mt-8">
                 <span className="executive-chip px-4 py-2 text-[10px] uppercase tracking-[0.28em]">
-                  ADN Grup Sigorta Control Room
+                  ADN Grup Sigorta
                 </span>
-                <h1 className="display-title mt-5 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl lg:text-[4rem]">
-                  Guven veren ilk izlenim, hizli giris, net operasyon.
+                <h1 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight text-[var(--color-ink)] sm:text-5xl lg:text-[3.7rem]">
+                  Daha temiz, daha hizli, daha anlasilir giris deneyimi.
                 </h1>
-                <p className="mt-5 max-w-2xl text-sm leading-7 text-white/72 sm:text-base sm:leading-8">
+                <p className="mt-5 max-w-2xl text-sm leading-7 text-[var(--color-muted)] sm:text-base sm:leading-8">
                   Musteri takibi, police yenileme, teklif surecleri ve belge merkezi tek
                   kurumlu ADN yapisinda sade, hizli ve kontrol edilebilir bir deneyimle
                   yonetilir.
@@ -52,10 +52,10 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
                   { label: "Durum", value: "Yetki kontrollu guvenli erisim" },
                 ].map((item) => (
                   <div key={item.label} className="metric-tile rounded-[1.35rem] px-4 py-4">
-                    <p className="text-[10px] uppercase tracking-[0.22em] text-white/48">
+                    <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--color-muted)]">
                       {item.label}
                     </p>
-                    <p className="mt-3 text-sm font-semibold text-white sm:text-base">
+                    <p className="mt-3 text-sm font-semibold text-[var(--color-ink)] sm:text-base">
                       {item.value}
                     </p>
                   </div>
@@ -66,16 +66,16 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
                 <div className="gold-sheen rounded-[1.45rem] px-5 py-5">
                   <div className="flex items-center gap-3">
                     <span className="status-dot" />
-                    <p className="text-sm font-semibold text-white">Gunluk operasyon hazir</p>
+                    <p className="text-sm font-semibold text-[var(--color-ink)]">Gunluk operasyon hazir</p>
                   </div>
-                  <p className="mt-3 text-sm leading-7 text-white/72">
+                  <p className="mt-3 text-sm leading-7 text-[var(--color-muted)]">
                     Ekip giris yaptigi anda musteri kartlari, police akisi ve belge alanlari
                     ayni merkezde acilir.
                   </p>
                 </div>
-                <div className="rounded-[1.45rem] border border-white/10 bg-white/5 px-5 py-5">
-                  <p className="text-sm font-semibold text-white">Kullanim prensibi</p>
-                  <p className="mt-3 text-sm leading-7 text-white/72">
+                <div className="rounded-[1.45rem] border border-[var(--color-line)] bg-[var(--color-soft)] px-5 py-5">
+                  <p className="text-sm font-semibold text-[var(--color-ink)]">Kullanim prensibi</p>
+                  <p className="mt-3 text-sm leading-7 text-[var(--color-muted)]">
                     Daha az kalabalik, daha net karar, daha hizli islem. Bu yuzey gunluk
                     ekip kullanimina uygun olarak tasarlandi.
                   </p>

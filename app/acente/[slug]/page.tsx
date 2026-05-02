@@ -60,14 +60,14 @@ export default async function AgencyPage({ params, searchParams }: AgencyPagePro
       {activeTab === "overview" ? (
       <>
       <section id="genel-bakis" className="mb-6 grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">
-        <div className="hero-stage glow-card rounded-[1.9rem] p-5 sm:p-7">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
+        <div className="glow-card rounded-[1.9rem] p-5 sm:p-7">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-accent)]">
             Canli genel bakis
           </p>
-          <h2 className="display-title mt-3 text-3xl font-semibold text-white sm:text-[3rem]">
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-[3rem]">
             Gunluk operasyonu hizli okuyun, dogru aksiyona inin.
           </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-7 text-white/72 sm:text-base sm:leading-8">
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--color-muted)] sm:text-base sm:leading-8">
             ADN Grup Sigorta icin bugunku portfoy, yenileme, ekip ve dijital talep akisi
             tek ekranda toplandi. Ilk bakista neyin oncelikli oldugu hemen anlasilsin diye
             yuzeyi sade ama daha etkili hale getirdik.
@@ -79,8 +79,8 @@ export default async function AgencyPage({ params, searchParams }: AgencyPagePro
               { label: "Acil takip", value: `${renewalDueCount + openTaskCount} dosya` },
             ].map((item) => (
               <div key={item.label} className="metric-tile rounded-[1.25rem] px-4 py-4">
-                <p className="text-[10px] uppercase tracking-[0.22em] text-white/48">{item.label}</p>
-                <p className="mt-3 text-base font-semibold text-white">{item.value}</p>
+                <p className="text-[10px] uppercase tracking-[0.22em] text-[var(--color-muted)]">{item.label}</p>
+                <p className="mt-3 text-base font-semibold text-[var(--color-ink)]">{item.value}</p>
               </div>
             ))}
           </div>
