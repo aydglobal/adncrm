@@ -46,7 +46,7 @@ export function LoginForm({
         <select
           name="agencySlug"
           defaultValue={selectedAgency}
-          className="w-full rounded-2xl border border-[var(--color-line)] bg-[var(--color-soft)] px-4 py-3 text-sm text-[var(--color-ink)] outline-none"
+          className="form-field w-full"
         >
           {agencies.map((agency) => (
             <option key={agency.slug} value={agency.slug}>
@@ -64,7 +64,7 @@ export function LoginForm({
           name="identifier"
           type="text"
           defaultValue={demoUsername}
-          className="w-full rounded-2xl border border-[var(--color-line)] bg-[var(--color-soft)] px-4 py-3 text-sm text-[var(--color-ink)] outline-none"
+          className="form-field w-full"
         />
       </label>
 
@@ -76,23 +76,28 @@ export function LoginForm({
           name="password"
           type="password"
           defaultValue={demoPassword}
-          className="w-full rounded-2xl border border-[var(--color-line)] bg-[var(--color-soft)] px-4 py-3 text-sm text-[var(--color-ink)] outline-none"
+          className="form-field w-full"
         />
       </label>
 
       <LoginSubmit />
 
-      <div className="rounded-[1.25rem] border border-[var(--color-line)] bg-white/75 p-4 text-sm text-[var(--color-muted)]">
+      <div className="rounded-[1.25rem] border border-[var(--color-line)] bg-[rgba(255,255,255,0.04)] p-4 text-sm leading-7 text-[var(--color-muted)]">
         {hasSupabase
-          ? "Gercek giris modu aktif. Yetkisi olmayan kullanici panele alinmaz."
-          : "Demo mod aktif. Ilk kullanim akisi onizleme olarak acilir."}
+          ? "Canli giris modu aktif. Yetkisi olmayan kullanici kurum paneline alinmaz."
+          : "Demo mod aktif. Ilk kullanim icin ekrani ornek veri ile acabilirsiniz."}
       </div>
 
       {!hasSupabase ? (
-        <div className="rounded-[1.25rem] border border-sky-200/20 bg-sky-500/5 p-4 text-sm text-[var(--color-muted)]">
+        <div className="rounded-[1.25rem] border border-[rgba(216,179,106,0.18)] bg-[rgba(216,179,106,0.08)] p-4 text-sm text-[var(--color-muted)]">
           <p className="font-semibold text-[var(--color-ink)]">Demo giris bilgisi</p>
-          <p className="mt-2">Kullanici adi: <span className="font-semibold text-[var(--color-ink)]">{demoUsername}</span></p>
-          <p>Sifre: <span className="font-semibold text-[var(--color-ink)]">{demoPassword}</span></p>
+          <p className="mt-2">
+            Kullanici adi:{" "}
+            <span className="font-semibold text-[var(--color-ink)]">{demoUsername}</span>
+          </p>
+          <p>
+            Sifre: <span className="font-semibold text-[var(--color-ink)]">{demoPassword}</span>
+          </p>
         </div>
       ) : null}
 

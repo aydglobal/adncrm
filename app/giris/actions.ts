@@ -17,7 +17,7 @@ export async function loginWithAgency(
   const password = String(formData.get("password") ?? "");
 
   if (!agencySlug) {
-    return { error: "Lutfen bir acente secin." };
+    return { error: "Lutfen bir kurum secin." };
   }
 
   if (!hasSupabaseEnv()) {
@@ -58,7 +58,7 @@ export async function loginWithAgency(
   if (membershipError || !membership) {
     await client.auth.signOut();
     return {
-      error: "Bu kullanicinin sectiginiz acenteye giris yetkisi yok.",
+      error: "Bu kullanicinin sectiginiz kurum icin giris yetkisi yok.",
     };
   }
 

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 import { BrandMark } from "@/components/brand-mark";
+import { LegalFooter } from "@/components/legal-footer";
 import { navItems } from "@/lib/mock-data";
 
 type AppShellProps = {
@@ -33,19 +34,19 @@ export function AppShell({
 
         <nav className="mt-8 space-y-2" aria-label="Ana menu">
           <Link
-            href="/"
+            href="/giris"
             className="block rounded-2xl border border-[var(--color-line)] bg-[rgba(15,23,42,0.6)] px-4 py-3 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-line-strong)]"
           >
-            ADN ana ekrana don
+            Giris ekranina don
           </Link>
           {navItems.map((item) => (
             <Link
               key={item.label}
               href={`${basePath}${item.href}`}
-              className="block rounded-2xl border border-[var(--color-line)] bg-white/5 px-4 py-3 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-line-strong)] hover:bg-white/10"
-            >
-              {item.label}
-            </Link>
+            className="block rounded-2xl border border-[var(--color-line)] bg-white/5 px-4 py-3 text-sm font-medium text-[var(--color-ink)] transition hover:border-[var(--color-line-strong)] hover:bg-white/10"
+          >
+            {item.label}
+          </Link>
           ))}
         </nav>
 
@@ -90,13 +91,13 @@ export function AppShell({
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap">
               <Link
                 href="/giris"
-                className="rounded-full border border-[var(--color-line)] bg-white px-5 py-3 text-center text-sm font-semibold text-[var(--color-ink)]"
+                className="secondary-button text-center"
               >
-                Giris yap
+                Kurum girisi
               </Link>
               <Link
                 href={`${basePath}#police-yonetimi`}
-                className="rounded-full bg-[var(--color-strong)] px-5 py-3 text-center text-sm font-semibold text-white"
+                className="cta-button text-center"
               >
                 Yeni police kaydi
               </Link>
@@ -105,6 +106,9 @@ export function AppShell({
         </header>
 
         <div className="mt-6">{children}</div>
+        <div className="mt-6">
+          <LegalFooter />
+        </div>
 
         <nav
           aria-label="Mobil menu"

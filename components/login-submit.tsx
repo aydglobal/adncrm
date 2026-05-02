@@ -9,9 +9,9 @@ export function LoginSubmit() {
     <button
       type="submit"
       disabled={pending}
-      className="w-full rounded-full bg-[var(--color-strong)] px-5 py-3 text-sm font-semibold text-white disabled:opacity-70"
+      className="cta-button w-full"
     >
-      {pending ? "Giris kontrol ediliyor..." : "Acenteyi secip gir"}
+      {pending ? "Giris kontrol ediliyor..." : "Panele gir"}
     </button>
   );
 }

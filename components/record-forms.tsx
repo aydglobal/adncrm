@@ -140,16 +140,16 @@ function SubmitButton({
   const { pending: isPending } = useFormStatus();
   const classes =
     tone === "primary"
-      ? "bg-[var(--color-strong)] text-white"
+      ? "cta-button text-white"
       : tone === "danger"
         ? "border border-rose-400/40 bg-rose-500/10 text-rose-200"
-        : "border border-[var(--color-line)] bg-white/5 text-[var(--color-ink)]";
+        : "secondary-button";
 
   return (
     <button
       type="submit"
       disabled={isPending || disabled}
-      className={`min-h-11 rounded-full px-4 py-3 text-sm font-semibold disabled:opacity-60 ${classes}`}
+      className={`disabled:opacity-60 ${classes}`}
     >
       {isPending ? pending : idle}
     </button>
@@ -177,7 +177,7 @@ function Input(props: {
         placeholder={props.placeholder}
         required={props.required}
         disabled={props.disabled}
-        className="min-h-12 w-full rounded-2xl border border-[var(--color-line)] bg-white/5 px-4 py-3 text-sm text-[var(--color-ink)] outline-none"
+        className="form-field w-full"
       />
     </label>
   );
@@ -202,7 +202,7 @@ function Textarea(props: {
         placeholder={props.placeholder}
         rows={props.rows ?? 3}
         disabled={props.disabled}
-        className="min-h-28 w-full rounded-2xl border border-[var(--color-line)] bg-white/5 px-4 py-3 text-sm text-[var(--color-ink)] outline-none"
+        className="form-field min-h-28 w-full resize-y"
       />
     </label>
   );
@@ -226,7 +226,7 @@ function Select(props: {
         name={props.name}
         defaultValue={props.defaultValue ?? ""}
         disabled={props.disabled}
-        className="min-h-12 w-full rounded-2xl border border-[var(--color-line)] bg-white/5 px-4 py-3 text-sm text-[var(--color-ink)] outline-none"
+        className="form-field w-full"
       >
         <option value="" disabled={!props.allowEmpty}>
           {props.emptyLabel ?? "Secim yapin"}
@@ -496,7 +496,7 @@ function DocumentItem({
           <h3 className="text-lg font-semibold text-[var(--color-ink)]">{record.title}</h3>
           <p className="text-sm text-[var(--color-muted)]">{record.documentType} | {fmtDate(record.createdAt)}</p>
         </div>
-        <a href={record.fileUrl} target="_blank" rel="noreferrer" className="rounded-full border border-[var(--color-line)] bg-white/5 px-4 py-2 text-sm font-semibold text-[var(--color-ink)]">
+        <a href={record.fileUrl} target="_blank" rel="noreferrer" className="secondary-button text-sm">
           Belgeyi ac
         </a>
       </div>
@@ -510,7 +510,7 @@ function DocumentItem({
         </div>
         <label className="block">
           <span className="mb-2 block text-sm font-medium text-[var(--color-ink)]">Belge tipi</span>
-          <select name="documentType" defaultValue={record.documentType} disabled={disabled} className="w-full rounded-2xl border border-[var(--color-line)] bg-white/5 px-4 py-3 text-sm text-[var(--color-ink)] outline-none">
+          <select name="documentType" defaultValue={record.documentType} disabled={disabled} className="form-field w-full">
             <option value="quote_pdf">quote_pdf</option>
             <option value="policy_pdf">policy_pdf</option>
             <option value="claim_document">claim_document</option>
