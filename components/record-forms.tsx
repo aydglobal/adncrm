@@ -86,6 +86,7 @@ type RecordFormsProps = {
   policyRecords: PolicyRecord[];
   taskRecords: TaskRecord[];
   documentRecords: DocumentRecord[];
+  mode?: "all" | "customers" | "policies" | "operations";
 };
 
 const initialState: CrudActionState = { status: "idle", message: "" };
@@ -535,6 +536,10 @@ function DocumentItem({
 
 export function RecordForms(props: RecordFormsProps) {
   const isLive = props.source === "supabase";
+  const mode = props.mode ?? "all";
+  const showCustomers = mode === "all" || mode === "customers";
+  const showPolicies = mode === "all" || mode === "policies";
+  const showOperations = mode === "all" || mode === "operations";
   const [customerState, customerAction] = useActionState(
     createCustomer.bind(null, props.slug),
     initialState,
@@ -557,6 +562,7 @@ export function RecordForms(props: RecordFormsProps) {
       <ModeBanner source={props.source} />
 
       <div className="grid gap-6 xl:grid-cols-2">
+        {showCustomers ? (
         <Card eyebrow="Musteri Kaydi" title="Yeni musteri ekle">
           <form action={customerAction} className="grid gap-4">
             <Input label="Musteri adi" name="fullName" placeholder="Ayse Yildiz" required disabled={!isLive} />
@@ -569,7 +575,9 @@ export function RecordForms(props: RecordFormsProps) {
           </form>
           <StatusNote state={customerState} />
         </Card>
+        ) : null}
 
+        {showPolicies ? (
         <Card eyebrow="Police Kaydi" title="Yeni police ac" id="police-yonetimi">
           <form action={policyAction} className="grid gap-4">
             <Select label="Musteri" name="customerId" options={props.customerOptions} disabled={!isLive} />
@@ -599,7 +607,9 @@ export function RecordForms(props: RecordFormsProps) {
           </form>
           <StatusNote state={policyState} />
         </Card>
+        ) : null}
 
+        {showOperations ? (
         <Card eyebrow="Gorev Merkezi" title="Yeni gorev olustur">
           <form action={taskAction} className="grid gap-4">
             <Input label="Gorev basligi" name="title" placeholder="Yenileme aramasi yap" required disabled={!isLive} />
@@ -625,7 +635,9 @@ export function RecordForms(props: RecordFormsProps) {
           </form>
           <StatusNote state={taskState} />
         </Card>
+        ) : null}
 
+        {showOperations ? (
         <Card eyebrow="Belge Arsivi" title="Yeni belge yukle" id="operasyon">
           <form action={documentAction} className="grid gap-4">
             <Input label="Belge adi" name="title" placeholder="Kasko teklif pdf" required disabled={!isLive} />
@@ -651,8 +663,10 @@ export function RecordForms(props: RecordFormsProps) {
           </form>
           <StatusNote state={documentState} />
         </Card>
+        ) : null}
       </div>
 
+      {showCustomers ? (
       <Card eyebrow="Musteri Yonetimi" title="Canli musteri listesi" id="musteri-yonetimi">
         <div className="space-y-4">
           {props.customerRecords.length === 0 ? <p className="text-sm text-[var(--color-muted)]">Henuz musteri kaydi yok.</p> : null}
@@ -667,7 +681,9 @@ export function RecordForms(props: RecordFormsProps) {
           ))}
         </div>
       </Card>
+      ) : null}
 
+      {showPolicies ? (
       <Card eyebrow="Police Yonetimi" title="Portfoy ve yenileme kayitlari">
         <div className="space-y-4">
           {props.policyRecords.length === 0 ? <p className="text-sm text-[var(--color-muted)]">Henuz police kaydi yok.</p> : null}
@@ -683,7 +699,9 @@ export function RecordForms(props: RecordFormsProps) {
           ))}
         </div>
       </Card>
+      ) : null}
 
+      {showOperations ? (
       <Card eyebrow="Gorev Yonetimi" title="Ekip operasyon listesi">
         <div className="space-y-4">
           {props.taskRecords.length === 0 ? <p className="text-sm text-[var(--color-muted)]">Henuz gorev kaydi yok.</p> : null}
@@ -700,7 +718,9 @@ export function RecordForms(props: RecordFormsProps) {
           ))}
         </div>
       </Card>
+      ) : null}
 
+      {showOperations ? (
       <Card eyebrow="Belge Yonetimi" title="Storage bagli belge arsivi">
         <div className="space-y-4">
           {props.documentRecords.length === 0 ? <p className="text-sm text-[var(--color-muted)]">Henuz belge kaydi yok.</p> : null}
@@ -717,6 +737,7 @@ export function RecordForms(props: RecordFormsProps) {
           ))}
         </div>
       </Card>
+      ) : null}
     </section>
   );
 }

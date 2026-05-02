@@ -76,10 +76,10 @@ export type Agency = {
 };
 
 export const navItems: NavItem[] = [
-  { href: "#genel-bakis", label: "Ana Panel", shortLabel: "Panel" },
-  { href: "#musteri-yonetimi", label: "Musteriler", shortLabel: "Musteri" },
-  { href: "#police-yonetimi", label: "Policeler", shortLabel: "Police" },
-  { href: "#operasyon", label: "Operasyon", shortLabel: "Ops" },
+  { href: "?tab=overview", label: "Ana Panel", shortLabel: "Panel" },
+  { href: "?tab=customers", label: "Musteriler", shortLabel: "Musteri" },
+  { href: "?tab=policies", label: "Policeler", shortLabel: "Police" },
+  { href: "?tab=operations", label: "Operasyon", shortLabel: "Ops" },
 ];
 
 function buildAgency(

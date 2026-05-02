@@ -9,10 +9,14 @@ type AgencyPageProps = {
   params: Promise<{
     slug: string;
   }>;
+  searchParams: Promise<{
+    tab?: string;
+  }>;
 };
 
-export default async function AgencyPage({ params }: AgencyPageProps) {
+export default async function AgencyPage({ params, searchParams }: AgencyPageProps) {
   const { slug } = await params;
+  const resolvedSearchParams = await searchParams;
   await requireAgencyAccess(slug);
   const {
     agency,
@@ -30,6 +34,12 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
   }
 
   const basePath = `/acente/${agency.slug}`;
+  const activeTab =
+    resolvedSearchParams.tab === "customers" ||
+    resolvedSearchParams.tab === "policies" ||
+    resolvedSearchParams.tab === "operations"
+      ? resolvedSearchParams.tab
+      : "overview";
   const renewalDueCount = policyRecords.filter(
     (policy) => policy.status === "renewal_due",
   ).length;
@@ -43,9 +53,12 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
     <AppShell
       agencyName={agency.name}
       basePath={basePath}
+      activeTab={activeTab}
       title="Operasyon ve portfoy kontrol merkezi"
       description={`${agency.city} ofisi icin musteri, police, lead, ekip ve belge surecleri tek merkezden yonetilir.`}
     >
+      {activeTab === "overview" ? (
+      <>
       <section id="genel-bakis" className="mb-6 grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">
         <div className="hero-stage glow-card rounded-[1.9rem] p-5 sm:p-7">
           <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
@@ -89,10 +102,10 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
             ))}
           </div>
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-            <a href="#police-yonetimi" className="cta-button text-center">
+            <a href={`${basePath}?tab=policies`} className="cta-button text-center">
               Police akisini ac
             </a>
-            <a href="#operasyon" className="secondary-button text-center">
+            <a href={`${basePath}?tab=operations`} className="secondary-button text-center">
               Operasyon alanina git
             </a>
           </div>
@@ -265,7 +278,10 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
           </div>
         </div>
       </section>
+      </>
+      ) : null}
 
+      {activeTab === "operations" ? (
       <section
         id="ekip"
         className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]"
@@ -350,17 +366,49 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
           </div>
         </div>
       </section>
+      ) : null}
 
-      <RecordForms
-        slug={slug}
-        source={source}
-        customerOptions={customerOptions}
-        policyOptions={policyOptions}
-        customerRecords={customerRecords}
-        policyRecords={policyRecords}
-        taskRecords={taskRecords}
-        documentRecords={documentRecords}
-      />
+      {activeTab !== "overview" ? (
+        <section className="mt-6 panel-card rounded-[1.6rem] p-5 sm:p-7">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
+            {activeTab === "customers" ? "Musteri ekrani" : activeTab === "policies" ? "Police ekrani" : "Operasyon ekrani"}
+          </p>
+          <h2 className="display-title mt-3 text-3xl font-semibold text-[var(--color-ink)]">
+            {activeTab === "customers"
+              ? "Musteri listesi ve kayit islemleri"
+              : activeTab === "policies"
+                ? "Police akisi ve yenileme islemleri"
+                : "Gorev, belge ve ekip operasyonu"}
+          </h2>
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-[var(--color-muted)]">
+            {activeTab === "customers"
+              ? "Bu ekranda sadece musteri ile ilgili kayitlar, duzenlemeler ve musteri listesi gorunur."
+              : activeTab === "policies"
+                ? "Bu ekranda sadece police olusturma, portfoy duzenleme ve yenileme odakli alanlar gorunur."
+                : "Bu ekranda gorevler, belgeler ve ekip operasyonuyla ilgili alanlar net sekilde ayrilir."}
+          </p>
+        </section>
+      ) : null}
+
+      {activeTab !== "overview" ? (
+        <RecordForms
+          slug={slug}
+          source={source}
+          customerOptions={customerOptions}
+          policyOptions={policyOptions}
+          customerRecords={customerRecords}
+          policyRecords={policyRecords}
+          taskRecords={taskRecords}
+          documentRecords={documentRecords}
+          mode={
+            activeTab === "customers"
+              ? "customers"
+              : activeTab === "policies"
+                ? "policies"
+                : "operations"
+          }
+        />
+      ) : null}
     </AppShell>
   );
 }

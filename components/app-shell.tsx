@@ -9,6 +9,7 @@ type AppShellProps = {
   title: string;
   description: string;
   basePath: string;
+  activeTab?: string;
   children: ReactNode;
 };
 
@@ -17,6 +18,7 @@ export function AppShell({
   title,
   description,
   basePath,
+  activeTab,
   children,
 }: AppShellProps) {
   return (
@@ -47,7 +49,7 @@ export function AppShell({
             <Link
               key={item.label}
               href={`${basePath}${item.href}`}
-              className="nav-rail-link"
+              className={`nav-rail-link ${activeTab && item.href.includes(`tab=${activeTab}`) ? "bg-[rgba(209,165,92,0.12)] border-[var(--color-line-strong)]" : ""}`}
             >
               {item.label}
             </Link>
@@ -60,10 +62,10 @@ export function AppShell({
           <div className="mt-4 space-y-3 text-sm text-white/78">
             <p>Musteri kartlari, police yenilemeleri ve operasyon kayitlari tek akista.</p>
             <div className="flex flex-col gap-2">
-              <Link href={`${basePath}#musteri-yonetimi`} className="secondary-button text-sm">
+              <Link href={`${basePath}?tab=customers`} className="secondary-button text-sm">
                 Musteri kayitlarini yonet
               </Link>
-              <Link href={`${basePath}#operasyon`} className="secondary-button text-sm">
+              <Link href={`${basePath}?tab=operations`} className="secondary-button text-sm">
                 Belge ve gorev alanina git
               </Link>
             </div>
@@ -95,7 +97,7 @@ export function AppShell({
                 Kurum girisi
               </Link>
               <Link
-                href={`${basePath}#police-yonetimi`}
+                href={`${basePath}?tab=policies`}
                 className="cta-button text-center"
               >
                 Yeni police kaydi
@@ -117,7 +119,7 @@ export function AppShell({
             <Link
               key={item.label}
               href={`${basePath}${item.href}`}
-              className="rounded-xl bg-white/90 px-2 py-2.5 text-center text-[11px] font-semibold leading-tight text-[var(--color-ink)]"
+              className={`rounded-xl px-2 py-2.5 text-center text-[11px] font-semibold leading-tight ${activeTab && item.href.includes(`tab=${activeTab}`) ? "bg-[var(--color-strong)] text-white" : "bg-white/90 text-[var(--color-ink)]"}`}
             >
               {item.shortLabel}
             </Link>
