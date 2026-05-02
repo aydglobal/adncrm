@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_APP_URL ?? "https://adncrm.onrender.com",
+    process.env.NEXT_PUBLIC_APP_URL ?? "https://adntrust.net",
   ),
   applicationName: "ADN CRM Suite",
   title: {
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0f1d",
+  themeColor: "#10151d",
 };
 
 export default function RootLayout({

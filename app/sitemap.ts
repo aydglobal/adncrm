@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { agencies } from "@/lib/mock-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://adncrm.onrender.com";
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://adntrust.net";
   const now = new Date();
 
   return [

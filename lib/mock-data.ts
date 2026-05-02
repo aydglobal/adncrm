@@ -79,8 +79,6 @@ export const navItems: NavItem[] = [
   { href: "#genel-bakis", label: "Ana Panel", shortLabel: "Panel" },
   { href: "#musteri-yonetimi", label: "Musteriler", shortLabel: "Musteri" },
   { href: "#police-yonetimi", label: "Policeler", shortLabel: "Police" },
-  { href: "#lead-akisi", label: "Lead Merkezi", shortLabel: "Lead" },
-  { href: "#ekip", label: "Ekip ve Satis", shortLabel: "Ekip" },
   { href: "#operasyon", label: "Operasyon", shortLabel: "Ops" },
 ];
 

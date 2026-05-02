@@ -35,8 +35,8 @@ export function BrandMark({
 
       <div className="min-w-0">
         <p
-          className={`text-[10px] font-semibold uppercase tracking-[0.34em] ${
-            dark ? "text-white/60" : "text-[var(--color-accent)]"
+          className={`text-[10px] font-semibold uppercase tracking-[0.38em] ${
+            dark ? "text-[color:var(--color-gold)]" : "text-[color:var(--color-gold)]"
           }`}
         >
           ADN TRUST
@@ -48,6 +48,11 @@ export function BrandMark({
         >
           ADN CRM Suite
         </p>
+        {!compact ? (
+          <p className={`mt-1 text-xs tracking-[0.18em] ${dark ? "text-white/55" : "text-[var(--color-muted)]"}`}>
+            SIGORTA OPERASYON PLATFORMU
+          </p>
+        ) : null}
       </div>
     </>
   );

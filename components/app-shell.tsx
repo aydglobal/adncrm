@@ -49,15 +49,25 @@ export function AppShell({
           ))}
         </nav>
 
-        <div className="mt-auto rounded-[1.5rem] bg-[linear-gradient(145deg,rgba(14,165,233,0.28),rgba(15,23,42,0.95))] p-5 text-white">
-          <p className="text-xs uppercase tracking-[0.24em] text-white/60">
-            Operasyon modu
+        <div className="mt-auto rounded-[1.5rem] border border-white/10 bg-white/5 p-5 text-white">
+          <p className="text-xs uppercase tracking-[0.24em] text-white/55">
+            Kisa yol
           </p>
-          <p className="mt-2 text-xl font-semibold">Tek kurumlu yonetim yapisi</p>
-          <p className="mt-3 text-sm leading-6 text-white/74">
-            Yetkili kullanici kendi paneline girer; ekip, satis ve operasyon akisi tek
-            ekranda toplanir.
-          </p>
+          <p className="mt-2 text-lg font-semibold">Hizli operasyon gecisi</p>
+          <div className="mt-4 space-y-2">
+            <Link
+              href={`${basePath}#musteri-yonetimi`}
+              className="block rounded-xl border border-white/10 px-3 py-2 text-sm text-white/78 transition hover:bg-white/8"
+            >
+              Musteri kayitlarini yonet
+            </Link>
+            <Link
+              href={`${basePath}#operasyon`}
+              className="block rounded-xl border border-white/10 px-3 py-2 text-sm text-white/78 transition hover:bg-white/8"
+            >
+              Belge ve gorev alanina git
+            </Link>
+          </div>
         </div>
       </aside>
 
@@ -66,7 +76,7 @@ export function AppShell({
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-3xl">
               <BrandMark compact href="/" />
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-accent)]">
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[color:var(--color-gold)]">
                 {agencyName}
               </p>
               <h1 className="mt-3 text-2xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-4xl">
@@ -98,7 +108,7 @@ export function AppShell({
 
         <nav
           aria-label="Mobil menu"
-          className="panel-card fixed bottom-3 left-3 right-3 z-20 mx-auto grid max-w-3xl grid-cols-3 gap-2 rounded-[1.35rem] p-2.5 lg:hidden"
+          className="panel-card fixed bottom-3 left-3 right-3 z-20 mx-auto grid max-w-3xl grid-cols-4 gap-2 rounded-[1.35rem] p-2.5 lg:hidden"
         >
           {navItems.map((item) => (
             <Link

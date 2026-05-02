@@ -41,7 +41,7 @@ export function LoginForm({
     <form className="mt-8 space-y-5" action={formAction}>
       <label className="block">
         <span className="mb-2 block text-sm font-medium text-[var(--color-ink)]">
-          Acente secimi
+          Kurum
         </span>
         <select
           name="agencySlug"
@@ -84,19 +84,15 @@ export function LoginForm({
 
       <div className="rounded-[1.25rem] border border-[var(--color-line)] bg-white/75 p-4 text-sm text-[var(--color-muted)]">
         {hasSupabase
-          ? "Gercek giris modu aktif. ADN Grup Sigorta yetkisi olmayan kullanici iceri alinmaz."
-          : "Tek kurum modu aktif. ADN Grup Sigorta girisi bu ekrandan dogrudan acilir."}
+          ? "Gercek giris modu aktif. Yetkisi olmayan kullanici panele alinmaz."
+          : "Demo mod aktif. Ilk kullanim akisi onizleme olarak acilir."}
       </div>
 
       {!hasSupabase ? (
         <div className="rounded-[1.25rem] border border-sky-200/20 bg-sky-500/5 p-4 text-sm text-[var(--color-muted)]">
           <p className="font-semibold text-[var(--color-ink)]">Demo giris bilgisi</p>
-          <p className="mt-2">
-            Kullanici adi: <span className="font-semibold text-[var(--color-ink)]">{demoUsername}</span>
-          </p>
-          <p>
-            Sifre: <span className="font-semibold text-[var(--color-ink)]">{demoPassword}</span>
-          </p>
+          <p className="mt-2">Kullanici adi: <span className="font-semibold text-[var(--color-ink)]">{demoUsername}</span></p>
+          <p>Sifre: <span className="font-semibold text-[var(--color-ink)]">{demoPassword}</span></p>
         </div>
       ) : null}
 

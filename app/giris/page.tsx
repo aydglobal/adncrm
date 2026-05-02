@@ -20,52 +20,55 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   }));
   const unauthorizedError =
     resolvedSearchParams.error === "yetkisiz"
-      ? "Bu acente icin yetkiniz bulunmuyor. Lutfen size tanimli acenteyle giris yapin."
+      ? "Bu hesap icin yetki bulunamadi. Tanimli kurum ile tekrar giris yapin."
       : "";
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-6xl items-center px-3 py-4 sm:px-6 sm:py-8 lg:px-8">
-      <section className="grid w-full overflow-hidden rounded-[1.9rem] border border-white/10 bg-[rgba(15,23,42,0.75)] shadow-[0_40px_120px_rgba(2,6,23,0.65)] backdrop-blur-xl sm:rounded-[2.5rem] lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="bg-[radial-gradient(circle_at_top,rgba(14,165,233,0.25),transparent_55%),linear-gradient(140deg,#0b1120,#0f172a_55%,#111827)] p-5 text-white sm:p-10">
-          <BrandMark dark priority href="/" />
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/65">
-            ADN Trust Giris
-          </p>
-          <h1 className="mt-6 text-3xl font-semibold tracking-tight sm:text-4xl">
-            ADN Grup Sigorta icin guvenli operasyon girisi
-          </h1>
-          <p className="mt-5 max-w-xl text-sm leading-7 text-white/75 sm:text-base sm:leading-8">
-            Tek kurum yapisinda tum operasyon tek merkezden yonetilir. Giris sonrasi
-            sadece ADN Grup Sigorta paneli acilir.
-          </p>
-
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
-            <article className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-              <p className="text-sm text-white/70">Aktif kurum</p>
-              <p className="mt-2 text-2xl font-semibold">ADN Grup Sigorta</p>
-            </article>
-            <article className="rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-              <p className="text-sm text-white/70">Giris modeli</p>
-              <p className="mt-2 text-2xl font-semibold">
-                {hasSupabaseEnv() ? "Supabase Auth" : "Demo yonlendirme"}
-              </p>
-            </article>
+    <main className="mx-auto flex min-h-screen max-w-4xl items-center px-3 py-4 sm:px-6 sm:py-8 lg:px-8">
+      <section className="panel-card w-full overflow-hidden rounded-[1.9rem] border border-white/10 sm:rounded-[2.4rem]">
+        <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="border-b border-white/10 bg-[linear-gradient(145deg,#091221,#10203a)] p-5 text-white sm:p-8 lg:border-b-0 lg:border-r">
+            <BrandMark dark priority href="/" />
+            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--color-gold)]">
+              ADN Grup Sigorta
+            </p>
+            <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+              Guvenli panel girisi
+            </h1>
+            <p className="mt-4 max-w-lg text-sm leading-7 text-white/72 sm:text-base">
+              Tek kurumlu yapida musteri, police, lead ve belge akisi sade bir panel
+              uzerinden yonetilir.
+            </p>
+            <div className="mt-8 space-y-3 text-sm text-white/70">
+              <div className="rounded-[1.2rem] border border-white/10 bg-white/5 px-4 py-3">
+                Aktif kurum: <span className="font-semibold text-white">ADN Grup Sigorta</span>
+              </div>
+              <div className="rounded-[1.2rem] border border-white/10 bg-white/5 px-4 py-3">
+                Giris modeli:{" "}
+                <span className="font-semibold text-white">
+                  {hasSupabaseEnv() ? "Supabase Auth" : "Demo mod"}
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div className="p-5 sm:p-10">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[var(--color-accent)]">
-            Kurumsal giris
-          </p>
-          <h2 className="mt-4 text-2xl font-semibold text-[var(--color-ink)] sm:text-3xl">
-            ADN kullanici girisi
-          </h2>
-          <LoginForm
-            agencies={agencyOptions}
-            hasSupabase={hasSupabaseEnv()}
-            initialAgencySlug={resolvedSearchParams.agency}
-            unauthorizedError={unauthorizedError}
-          />
+          <div className="p-5 sm:p-8">
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[color:var(--color-gold)]">
+              Kullanici girisi
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold text-[var(--color-ink)] sm:text-3xl">
+              Hesabiniza girin
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-[var(--color-muted)]">
+              Yetkili kullanici paneli yalnizca tanimli kurum ve hesap ile acilir.
+            </p>
+            <LoginForm
+              agencies={agencyOptions}
+              hasSupabase={hasSupabaseEnv()}
+              initialAgencySlug={resolvedSearchParams.agency}
+              unauthorizedError={unauthorizedError}
+            />
+          </div>
         </div>
       </section>
     </main>
