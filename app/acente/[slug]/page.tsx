@@ -61,17 +61,19 @@ export default async function AgencyPage({ params, searchParams }: AgencyPagePro
       <>
       <section id="genel-bakis" className="mb-6 grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">
         <div className="glow-card rounded-[1.9rem] p-5 sm:p-7">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-accent)]">
-            Canli genel bakis
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-[3rem]">
-            Gunluk operasyonu hizli okuyun, dogru aksiyona inin.
+          <p className="eyebrow">Operation & portfolio</p>
+          <h2 className="hero-heading mt-4 text-[var(--color-ink)]">
+            Control hub. Net akis. Hemen aksiyon.
           </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-7 text-[var(--color-muted)] sm:text-base sm:leading-8">
-            ADN Grup Sigorta icin bugunku portfoy, yenileme, ekip ve dijital talep akisi
-            tek ekranda toplandi. Ilk bakista neyin oncelikli oldugu hemen anlasilsin diye
-            yuzeyi sade ama daha etkili hale getirdik.
+          <p className="soft-note mt-5 max-w-2xl text-sm sm:text-base">
+            ADN Grup Sigorta icin bugunku portfoy, yenileme, ekip ve dijital talep
+            akisi tek ekranda toplanir.
           </p>
+          <div className="mt-6 flex flex-wrap gap-2">
+            <span className="kpi-chip">Portfoy aktif</span>
+            <span className="kpi-chip">Yenileme takipte</span>
+            <span className="kpi-chip">Lead akisi acik</span>
+          </div>
           <div className="mt-7 grid gap-3 sm:grid-cols-3">
             {[
               { label: "Veri kaynagi", value: source === "supabase" ? "Supabase canli veri" : "Demo veri" },
@@ -87,16 +89,17 @@ export default async function AgencyPage({ params, searchParams }: AgencyPagePro
         </div>
 
         <div className="panel-card rounded-[1.9rem] p-5 sm:p-7">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
-            Hizli karar paneli
-          </p>
+          <p className="eyebrow">Quick action panel</p>
+          <h3 className="mt-3 text-2xl font-semibold tracking-tight text-[var(--color-ink)]">
+            Bugun oncelikli adimlar
+          </h3>
           <div className="mt-5 grid gap-3">
             {[
               "Yenilemesi gelen dosyalari once acin ve teklif bekleyen kayitlari guncelleyin.",
               "Skoru yuksek lead'leri gun icinde ilk 15 dakika icinde arayin.",
               "Belge hareketlerini tamamlayip ekip gorevlerini gun sonuna kadar kapatin.",
             ].map((item) => (
-              <div key={item} className="rounded-[1.25rem] border border-[var(--color-line)] bg-[rgba(255,255,255,0.03)] px-4 py-4 text-sm leading-7 text-[var(--color-muted)]">
+              <div key={item} className="feature-card text-sm leading-7 text-[var(--color-muted)]">
                 {item}
               </div>
             ))}
@@ -115,22 +118,22 @@ export default async function AgencyPage({ params, searchParams }: AgencyPagePro
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {[
           {
-            title: "Yenileme alarmi",
+            title: "Renewals due",
             value: `${renewalDueCount} police`,
             detail: "Bugun yakin takip isteyen yenileme dosyalari",
           },
           {
-            title: "Acil gorev",
+            title: "Open tasks",
             value: `${openTaskCount} is`,
             detail: "Satis ve operasyon ekiplerinin bekleyen gorevleri",
           },
           {
-            title: "Sicak lead",
+            title: "Lead score",
             value: `${hotLeadCount} kayit`,
             detail: "Skoru 80 uzeri gelen dijital basvurular",
           },
           {
-            title: "Belge hareketi",
+            title: "Pending docs",
             value: `${recentDocumentCount} dosya`,
             detail: "Arsive bagli son teklifler ve police kopyalari",
           },

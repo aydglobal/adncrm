@@ -23,50 +23,52 @@ export function AppShell({
 }: AppShellProps) {
   return (
     <div className="mx-auto flex min-h-screen max-w-7xl gap-4 px-3 py-3 sm:gap-6 sm:px-6 sm:py-4 lg:px-8">
-      <aside className="panel-card sticky top-4 hidden h-[calc(100vh-2rem)] w-[298px] shrink-0 overflow-y-auto rounded-[2rem] p-5 lg:block">
+      <aside className="sidebar-panel sticky top-4 hidden h-[calc(100vh-2rem)] w-[298px] shrink-0 overflow-y-auto rounded-[2rem] p-5 lg:block">
         <div>
-          <BrandMark compact href="/" />
-          <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-[rgba(20,122,103,0.18)] bg-[rgba(20,122,103,0.07)] px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-[var(--color-accent-strong)]">
+          <BrandMark compact dark href="/" />
+          <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-[rgba(16,207,194,0.18)] bg-[rgba(16,207,194,0.08)] px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-[rgba(226,252,248,0.95)]">
             <span className="status-dot" />
-            ADN operasyon paneli
+            Operation hub
           </div>
-          <h1 className="mt-4 text-[2rem] font-semibold tracking-tight text-[var(--color-ink)]">
+          <h1 className="mt-4 text-[2rem] font-semibold tracking-tight text-white">
             {agencyName}
           </h1>
-          <p className="mt-3 text-sm leading-7 text-[var(--color-muted)]">
-            Tum ana is akislari tek panelde, sade ve hizli kullanim mantigiyla yonetilir.
+          <p className="sidebar-text mt-3 text-sm leading-7">
+            Musteri, police ve operasyon akislarini tek merkezden yonetin.
           </p>
         </div>
 
-        <nav className="mt-8 space-y-2" aria-label="Ana menu">
+        <div className="sidebar-divider mt-7" />
+
+        <nav className="mt-7 space-y-2" aria-label="Ana menu">
           <Link
             href="/giris"
-            className="nav-rail-link"
+            className="sidebar-nav-link"
           >
-            Giris ekranina don
+            Panele geri don
           </Link>
           {navItems.map((item) => (
             <Link
               key={item.label}
               href={`${basePath}${item.href}`}
-              className={`nav-rail-link ${activeTab && item.href.includes(`tab=${activeTab}`) ? "bg-[rgba(20,122,103,0.08)] border-[var(--color-line-strong)] text-[var(--color-accent-strong)]" : ""}`}
+              className={`sidebar-nav-link ${activeTab && item.href.includes(`tab=${activeTab}`) ? "sidebar-nav-link-active" : ""}`}
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="mt-5 gold-sheen rounded-[1.6rem] p-5 text-[var(--color-ink)]">
-          <p className="text-xs uppercase tracking-[0.24em] text-[var(--color-muted)]">Hizli erisim</p>
-          <p className="mt-2 text-lg font-semibold">Bugun en cok kullanilan alanlar</p>
-          <div className="mt-4 space-y-3 text-sm text-[var(--color-muted)]">
-            <p>Musteri, police ve operasyon ekranlari tek tikla acilir.</p>
+        <div className="mt-5 rounded-[1.6rem] border border-[rgba(255,255,255,0.08)] bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-5 text-white">
+          <p className="text-xs uppercase tracking-[0.24em] text-white/55">Quick access</p>
+          <p className="mt-2 text-lg font-semibold">Gunluk kullanim</p>
+          <div className="mt-4 space-y-3 text-sm text-white/70">
+            <p>En sik kullanilan iki ekrana hizli gecis.</p>
             <div className="flex flex-col gap-2">
-              <Link href={`${basePath}?tab=customers`} className="secondary-button text-sm">
-                Musteri kayitlarini yonet
+              <Link href={`${basePath}?tab=customers`} className="sidebar-nav-link text-sm">
+                Musteriler
               </Link>
-              <Link href={`${basePath}?tab=operations`} className="secondary-button text-sm">
-                Belge ve gorev alanina git
+              <Link href={`${basePath}?tab=operations`} className="sidebar-nav-link text-sm">
+                Operasyon
               </Link>
             </div>
           </div>
@@ -74,17 +76,17 @@ export function AppShell({
       </aside>
 
       <div className="min-w-0 flex-1 pb-28 sm:pb-32 lg:pb-6">
-        <header className="panel-card rounded-[1.8rem] p-4 sm:rounded-[2.2rem] sm:p-8">
+        <header className="panel-card rounded-[1.8rem] p-5 sm:rounded-[2.2rem] sm:p-8">
           <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-3xl">
               <BrandMark compact href="/" />
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[var(--color-accent)]">
+              <p className="eyebrow mt-1">
                 {agencyName}
               </p>
-              <h1 className="mt-3 text-[2.1rem] font-semibold tracking-tight text-[var(--color-ink)] sm:text-[3rem]">
+              <h1 className="mt-3 max-w-[12ch] text-[2.1rem] font-semibold tracking-tight text-[var(--color-ink)] sm:text-[3rem]">
                 {title}
               </h1>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-[var(--color-muted)] sm:text-base sm:leading-7">
+              <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--color-muted)] sm:text-base">
                 {description}
               </p>
             </div>
