@@ -11,12 +11,12 @@ export const metadata: Metadata = {
     template: "%s | ADN CRM Suite",
   },
   description:
-    "ADN Trust icin canliya hazir sigorta operasyon, acente yonetimi, police, lead ve ekip kontrol platformu.",
+    "ADN Trust icin canliya hazir sigorta operasyon, kurum yonetimi, police, lead ve ekip kontrol platformu.",
   manifest: "/manifest.webmanifest",
   keywords: [
     "ADN Trust",
     "sigorta crm",
-    "acente yonetimi",
+    "kurum yonetimi",
     "policy tracking",
     "lead management",
   ],

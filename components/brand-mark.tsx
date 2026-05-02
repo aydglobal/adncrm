@@ -42,7 +42,7 @@ export function BrandMark({
           ADN TRUST
         </p>
         <p
-          className={`truncate text-lg font-semibold tracking-tight ${
+          className={`display-title truncate text-lg font-semibold tracking-tight ${
             dark ? "text-white" : "text-[var(--color-ink)]"
           } ${compact ? "text-base" : "sm:text-xl"}`}
         >
@@ -50,7 +50,7 @@ export function BrandMark({
         </p>
         {!compact ? (
           <p className={`mt-1 text-xs tracking-[0.18em] ${dark ? "text-white/55" : "text-[var(--color-muted)]"}`}>
-            SIGORTA OPERASYON PLATFORMU
+            SIGORTA OPERASYON VE PORTFOY PLATFORMU
           </p>
         ) : null}
       </div>

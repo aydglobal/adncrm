@@ -25,61 +25,83 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       : "";
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-6xl items-center px-3 py-4 sm:px-6 sm:py-8 lg:px-8">
+    <main className="mx-auto flex min-h-screen max-w-7xl items-center px-3 py-4 sm:px-6 sm:py-8 lg:px-8">
       <section className="w-full space-y-4">
-        <div className="panel-card overflow-hidden rounded-[1.9rem] border border-white/10 sm:rounded-[2.4rem]">
-          <div className="grid gap-0 lg:grid-cols-[1.02fr_0.98fr]">
-            <div className="border-b border-white/10 bg-[linear-gradient(145deg,#11161e,#171d26_55%,#2a2217)] p-5 text-white sm:p-8 lg:border-b-0 lg:border-r lg:p-10">
-            <BrandMark dark priority href="/" />
-            <p className="mt-6 text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--color-gold)]">
-              ADN Grup Sigorta
-            </p>
-            <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-              Kurumsal giris ekrani
-            </h1>
-            <p className="mt-4 max-w-lg text-sm leading-7 text-white/72 sm:text-base">
-              Musteri yonetimi, police yenileme, teklif takibi ve belge arsivi ADN Grup
-              Sigorta ekibi icin tek noktada acilir.
-            </p>
-            <div className="mt-8 grid gap-3 text-sm text-white/70 sm:grid-cols-2">
-              <div className="rounded-[1.25rem] border border-white/10 bg-white/5 px-4 py-4">
-                <p className="text-[11px] uppercase tracking-[0.22em] text-white/45">
-                  Aktif kurum
-                </p>
-                <p className="mt-2 font-semibold text-white">ADN Grup Sigorta</p>
-              </div>
-              <div className="rounded-[1.25rem] border border-white/10 bg-white/5 px-4 py-4">
-                <p className="text-[11px] uppercase tracking-[0.22em] text-white/45">
-                  Giris modeli
-                </p>
-                <p className="mt-2 font-semibold text-white">
-                  {hasSupabaseEnv() ? "Canli yetkili giris" : "Demo onizleme modu"}
+        <div className="hero-stage panel-card overflow-hidden rounded-[2rem] sm:rounded-[2.6rem]">
+          <div className="relative grid gap-0 lg:grid-cols-[1.06fr_0.94fr]">
+            <div className="border-b border-white/10 px-5 py-6 text-white sm:px-8 sm:py-8 lg:border-b-0 lg:border-r lg:px-10 lg:py-10">
+              <BrandMark dark priority href="/" />
+              <div className="mt-8">
+                <span className="executive-chip px-4 py-2 text-[10px] uppercase tracking-[0.28em]">
+                  ADN Grup Sigorta Control Room
+                </span>
+                <h1 className="display-title mt-5 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl lg:text-[4rem]">
+                  Guven veren ilk izlenim, hizli giris, net operasyon.
+                </h1>
+                <p className="mt-5 max-w-2xl text-sm leading-7 text-white/72 sm:text-base sm:leading-8">
+                  Musteri takibi, police yenileme, teklif surecleri ve belge merkezi tek
+                  kurumlu ADN yapisinda sade, hizli ve kontrol edilebilir bir deneyimle
+                  yonetilir.
                 </p>
               </div>
-            </div>
-            <div className="mt-6 rounded-[1.4rem] border border-[rgba(216,179,106,0.16)] bg-[rgba(216,179,106,0.08)] px-4 py-4 text-sm leading-7 text-white/75">
-              Giris sonrasinda kullanici sadece kendi yetkili oldugu kurum ekranina
-              ulasir. Yetkisiz gecisler otomatik olarak engellenir.
-            </div>
-          </div>
 
-            <div className="p-5 sm:p-8 lg:p-10">
-              <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[color:var(--color-gold)]">
-                Kullanici girisi
-              </p>
-              <h2 className="mt-3 text-2xl font-semibold text-[var(--color-ink)] sm:text-3xl">
-                Panele girin
-              </h2>
-              <p className="mt-3 max-w-xl text-sm leading-7 text-[var(--color-muted)]">
-                Kurum secimini kontrol edin, kullanici bilgilerinizi girin ve yonetim
-                paneline guvenli sekilde ulasin.
-              </p>
-              <LoginForm
-                agencies={agencyOptions}
-                hasSupabase={hasSupabaseEnv()}
-                initialAgencySlug={resolvedSearchParams.agency}
-                unauthorizedError={unauthorizedError}
-              />
+              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+                {[
+                  { label: "Aktif kurum", value: "ADN Grup Sigorta" },
+                  { label: "Giris modeli", value: hasSupabaseEnv() ? "Canli yetkili giris" : "Demo onizleme" },
+                  { label: "Durum", value: "Yetki kontrollu guvenli erisim" },
+                ].map((item) => (
+                  <div key={item.label} className="metric-tile rounded-[1.35rem] px-4 py-4">
+                    <p className="text-[10px] uppercase tracking-[0.22em] text-white/48">
+                      {item.label}
+                    </p>
+                    <p className="mt-3 text-sm font-semibold text-white sm:text-base">
+                      {item.value}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                <div className="gold-sheen rounded-[1.45rem] px-5 py-5">
+                  <div className="flex items-center gap-3">
+                    <span className="status-dot" />
+                    <p className="text-sm font-semibold text-white">Gunluk operasyon hazir</p>
+                  </div>
+                  <p className="mt-3 text-sm leading-7 text-white/72">
+                    Ekip giris yaptigi anda musteri kartlari, police akisi ve belge alanlari
+                    ayni merkezde acilir.
+                  </p>
+                </div>
+                <div className="rounded-[1.45rem] border border-white/10 bg-white/5 px-5 py-5">
+                  <p className="text-sm font-semibold text-white">Kullanim prensibi</p>
+                  <p className="mt-3 text-sm leading-7 text-white/72">
+                    Daha az kalabalik, daha net karar, daha hizli islem. Bu yuzey gunluk
+                    ekip kullanimina uygun olarak tasarlandi.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative px-5 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
+              <div className="rounded-[1.75rem] border border-[var(--color-line)] bg-[rgba(255,255,255,0.04)] p-5 shadow-[0_28px_70px_rgba(2,6,23,0.24)] sm:p-7">
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[color:var(--color-gold)]">
+                  Kullanici girisi
+                </p>
+                <h2 className="display-title mt-3 text-3xl font-semibold text-[var(--color-ink)] sm:text-4xl">
+                  Panele girin
+                </h2>
+                <p className="mt-3 max-w-xl text-sm leading-7 text-[var(--color-muted)]">
+                  Kurum secimini kontrol edin, hesap bilginizi girin ve ADN operasyon
+                  paneline guvenli sekilde ulasin.
+                </p>
+                <LoginForm
+                  agencies={agencyOptions}
+                  hasSupabase={hasSupabaseEnv()}
+                  initialAgencySlug={resolvedSearchParams.agency}
+                  unauthorizedError={unauthorizedError}
+                />
+              </div>
             </div>
           </div>
         </div>

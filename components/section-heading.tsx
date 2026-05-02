@@ -14,7 +14,7 @@ export function SectionHeading({
       <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[color:var(--color-gold)]">
         {eyebrow}
       </p>
-      <h2 className="mt-3 text-2xl font-semibold tracking-tight text-[var(--color-ink)] sm:text-3xl">
+      <h2 className="display-title mt-3 text-[2rem] font-semibold tracking-tight text-[var(--color-ink)] sm:text-[2.3rem]">
         {title}
       </h2>
       <div className="mt-3 h-px w-20 bg-[linear-gradient(90deg,var(--color-gold),transparent)]" />

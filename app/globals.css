@@ -1,24 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --color-page: #10151d;
-  --color-surface: rgba(18, 23, 31, 0.9);
-  --color-soft: rgba(28, 35, 45, 0.82);
-  --color-ink: #f6f3ee;
-  --color-muted: #a9abaf;
-  --color-line: rgba(191, 186, 176, 0.14);
-  --color-line-strong: rgba(216, 179, 106, 0.34);
-  --color-accent: #d8b36a;
-  --color-accent-strong: #f1debb;
-  --color-strong: #b78a47;
-  --color-chip: rgba(216, 179, 106, 0.12);
-  --color-gold: #d8b36a;
-  --color-gold-soft: rgba(216, 179, 106, 0.12);
+  --color-page: #0d1217;
+  --color-surface: rgba(17, 24, 30, 0.9);
+  --color-soft: rgba(31, 40, 49, 0.8);
+  --color-ink: #f4efe7;
+  --color-muted: #adb2b7;
+  --color-line: rgba(214, 199, 170, 0.14);
+  --color-line-strong: rgba(209, 165, 92, 0.4);
+  --color-accent: #d1a55c;
+  --color-accent-strong: #f3dfb9;
+  --color-strong: #af7b34;
+  --color-chip: rgba(209, 165, 92, 0.12);
+  --color-gold: #d1a55c;
+  --color-gold-soft: rgba(209, 165, 92, 0.12);
+  --color-emerald: #1e8e74;
+  --color-emerald-soft: rgba(30, 142, 116, 0.16);
 }
 
 @theme inline {
   --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "Cascadia Mono", "Consolas", "Liberation Mono", monospace;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
 
 * {
@@ -33,10 +36,10 @@ html {
 body {
   min-height: 100vh;
   background:
-    radial-gradient(circle at 12% 10%, rgba(114, 91, 56, 0.16), transparent 26%),
-    radial-gradient(circle at 86% 4%, rgba(216, 179, 106, 0.12), transparent 32%),
-    radial-gradient(circle at 18% 88%, rgba(88, 96, 108, 0.14), transparent 28%),
-    linear-gradient(180deg, #10151d 0%, #151b23 48%, #1a2029 100%);
+    radial-gradient(circle at 10% 8%, rgba(209, 165, 92, 0.12), transparent 28%),
+    radial-gradient(circle at 88% 10%, rgba(30, 142, 116, 0.14), transparent 30%),
+    radial-gradient(circle at 18% 88%, rgba(84, 97, 114, 0.12), transparent 26%),
+    linear-gradient(180deg, #0d1217 0%, #141a21 46%, #181f27 100%);
   color: var(--color-ink);
   font-family: var(--font-sans);
   overflow-x: hidden;
@@ -101,7 +104,7 @@ select:focus-visible {
   background: var(--color-surface);
   border: 1px solid var(--color-line);
   box-shadow:
-    0 26px 80px rgba(2, 6, 23, 0.48),
+    0 28px 88px rgba(2, 6, 23, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(20px);
 }
@@ -121,8 +124,9 @@ select:focus-visible {
 
 .glow-card {
   background:
-    radial-gradient(circle at top right, rgba(216, 179, 106, 0.12), transparent 28%),
-    linear-gradient(135deg, rgba(16, 21, 29, 0.97), rgba(26, 32, 41, 0.84));
+    radial-gradient(circle at top right, rgba(209, 165, 92, 0.12), transparent 26%),
+    radial-gradient(circle at bottom left, rgba(30, 142, 116, 0.09), transparent 28%),
+    linear-gradient(135deg, rgba(15, 20, 26, 0.97), rgba(24, 30, 37, 0.88));
   border: 1px solid rgba(191, 186, 176, 0.12);
   box-shadow:
     0 40px 110px rgba(2, 6, 23, 0.68),
@@ -131,7 +135,7 @@ select:focus-visible {
 
 .premium-card {
   background:
-    linear-gradient(180deg, rgba(24, 29, 37, 0.94), rgba(20, 25, 33, 0.76));
+    linear-gradient(180deg, rgba(24, 30, 37, 0.96), rgba(19, 25, 32, 0.78));
   border: 1px solid rgba(191, 186, 176, 0.13);
   box-shadow:
     0 28px 80px rgba(3, 7, 18, 0.52),
@@ -152,9 +156,9 @@ select:focus-visible {
 
 .gold-sheen {
   background:
-    linear-gradient(135deg, rgba(216, 179, 106, 0.16), rgba(216, 179, 106, 0.02)),
-    rgba(25, 30, 38, 0.66);
-  border: 1px solid rgba(216, 179, 106, 0.2);
+    linear-gradient(135deg, rgba(209, 165, 92, 0.2), rgba(30, 142, 116, 0.04)),
+    rgba(25, 30, 38, 0.72);
+  border: 1px solid rgba(209, 165, 92, 0.24);
 }
 
 .executive-chip {
@@ -208,6 +212,11 @@ select:focus-visible {
   filter: brightness(1.03);
 }
 
+.cta-button:active,
+.secondary-button:active {
+  transform: translateY(0);
+}
+
 .secondary-button {
   border: 1px solid var(--color-line);
   background: rgba(255, 255, 255, 0.96);
@@ -217,6 +226,68 @@ select:focus-visible {
 .secondary-button:hover {
   transform: translateY(-1px);
   background: #ffffff;
+}
+
+.display-title {
+  font-family: var(--font-serif);
+  letter-spacing: -0.03em;
+}
+
+.hero-stage {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 18%, rgba(209, 165, 92, 0.18), transparent 24%),
+    radial-gradient(circle at 82% 16%, rgba(30, 142, 116, 0.15), transparent 26%);
+  pointer-events: none;
+}
+
+.hero-stage::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.metric-tile {
+  border: 1px solid rgba(214, 199, 170, 0.12);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(18, 24, 30, 0.72);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.status-dot {
+  display: inline-flex;
+  height: 0.55rem;
+  width: 0.55rem;
+  border-radius: 999px;
+  background: var(--color-emerald);
+  box-shadow: 0 0 0 6px rgba(30, 142, 116, 0.12);
+}
+
+.nav-rail-link {
+  display: block;
+  border-radius: 1rem;
+  border: 1px solid var(--color-line);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.9rem 1rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.nav-rail-link:hover {
+  border-color: var(--color-line-strong);
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateX(2px);
 }
 
 .ledger-grid {

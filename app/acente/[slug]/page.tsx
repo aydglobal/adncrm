@@ -43,14 +43,60 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
     <AppShell
       agencyName={agency.name}
       basePath={basePath}
-      title="ADN Grup Sigorta operasyon merkezi"
+      title="Operasyon ve portfoy kontrol merkezi"
       description={`${agency.city} ofisi icin musteri, police, lead, ekip ve belge surecleri tek merkezden yonetilir.`}
     >
-      <section
-        id="genel-bakis"
-        className="mb-6 premium-card rounded-[1.75rem] p-4 text-sm text-[var(--color-muted)]"
-      >
-        Veri kaynagi: {source === "supabase" ? "Supabase canli veri" : "Demo veri"}
+      <section id="genel-bakis" className="mb-6 grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">
+        <div className="hero-stage glow-card rounded-[1.9rem] p-5 sm:p-7">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
+            Canli genel bakis
+          </p>
+          <h2 className="display-title mt-3 text-3xl font-semibold text-white sm:text-[3rem]">
+            Gunluk operasyonu hizli okuyun, dogru aksiyona inin.
+          </h2>
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-white/72 sm:text-base sm:leading-8">
+            ADN Grup Sigorta icin bugunku portfoy, yenileme, ekip ve dijital talep akisi
+            tek ekranda toplandi. Ilk bakista neyin oncelikli oldugu hemen anlasilsin diye
+            yuzeyi sade ama daha etkili hale getirdik.
+          </p>
+          <div className="mt-7 grid gap-3 sm:grid-cols-3">
+            {[
+              { label: "Veri kaynagi", value: source === "supabase" ? "Supabase canli veri" : "Demo veri" },
+              { label: "Sicak lead", value: `${hotLeadCount} kayit` },
+              { label: "Acil takip", value: `${renewalDueCount + openTaskCount} dosya` },
+            ].map((item) => (
+              <div key={item.label} className="metric-tile rounded-[1.25rem] px-4 py-4">
+                <p className="text-[10px] uppercase tracking-[0.22em] text-white/48">{item.label}</p>
+                <p className="mt-3 text-base font-semibold text-white">{item.value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="panel-card rounded-[1.9rem] p-5 sm:p-7">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[var(--color-gold)]">
+            Hizli karar paneli
+          </p>
+          <div className="mt-5 grid gap-3">
+            {[
+              "Yenilemesi gelen dosyalari once acin ve teklif bekleyen kayitlari guncelleyin.",
+              "Skoru yuksek lead'leri gun icinde ilk 15 dakika icinde arayin.",
+              "Belge hareketlerini tamamlayip ekip gorevlerini gun sonuna kadar kapatin.",
+            ].map((item) => (
+              <div key={item} className="rounded-[1.25rem] border border-[var(--color-line)] bg-[rgba(255,255,255,0.03)] px-4 py-4 text-sm leading-7 text-[var(--color-muted)]">
+                {item}
+              </div>
+            ))}
+          </div>
+          <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+            <a href="#police-yonetimi" className="cta-button text-center">
+              Police akisini ac
+            </a>
+            <a href="#operasyon" className="secondary-button text-center">
+              Operasyon alanina git
+            </a>
+          </div>
+        </div>
       </section>
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -76,9 +122,9 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
             detail: "Arsive bagli son teklifler ve police kopyalari",
           },
         ].map((item) => (
-          <article key={item.title} className="panel-card rounded-[1.5rem] p-5">
+          <article key={item.title} className="metric-tile rounded-[1.55rem] p-5">
             <p className="text-sm text-[var(--color-muted)]">{item.title}</p>
-            <p className="mt-4 text-2xl font-semibold text-[var(--color-ink)]">
+            <p className="mt-4 text-[2rem] font-semibold text-[var(--color-ink)]">
               {item.value}
             </p>
             <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">
@@ -90,14 +136,14 @@ export default async function AgencyPage({ params }: AgencyPageProps) {
 
       <section className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {agency.kpis.map((card) => (
-          <article key={card.title} className="premium-card rounded-[1.5rem] p-5">
+          <article key={card.title} className="premium-card rounded-[1.6rem] p-5">
             <div className="flex items-center justify-between gap-4">
               <p className="text-sm text-[var(--color-muted)]">{card.title}</p>
               <span className="rounded-full bg-[var(--color-chip)] px-3 py-1 text-xs font-semibold text-[var(--color-accent-strong)]">
                 {card.change}
               </span>
             </div>
-            <p className="mt-6 text-3xl font-semibold text-[var(--color-ink)]">
+            <p className="display-title mt-6 text-[2.4rem] font-semibold text-[var(--color-ink)]">
               {card.value}
             </p>
             <p className="mt-2 text-sm leading-6 text-[var(--color-muted)]">
